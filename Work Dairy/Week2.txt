@@ -1,0 +1,3 @@
+Week2
+
+In week2, we were given 3 topics which focused on NLP, block chain and traditional web services development. I have some background knowledge of the third one and I did some research on the data feed offered by AlphaVantage API, which is pretty easy to access. From where I stand, topic 2 and 3 both work for me and the API and web thing definitely will be my preference. We set up the trello platform and the github sharing repository to discuss our thoughts on the topic choosing. Everything went smoothly I guess.
