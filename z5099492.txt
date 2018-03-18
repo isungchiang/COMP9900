@@ -1,0 +1,8 @@
+Week2
+
+Group formed with Zheng Li, Yisong Jian and Xiaochen Han. After that, we chatted about three topic and decided third one as our work.
+I also disscussed aims and function of topic 3 with our team. Besides that, I wrote the Exisiting system and drawbacks part of the proposal.
+
+Week3 
+This week is the beginning of the task. My mission is to search the basic information of stock market especially formulas which will be used
+in to draw graphes in our topic. And I also need to figure out different graph's meanning of the stock market to prepare for our topic function building.
