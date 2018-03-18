@@ -1,0 +1,3 @@
+Week 3
+Our team decide to get some finance stock data about company. So I have searched some websites and decide to crawl data from some of them.
+These websites have rich information but hard to extract. I am using python Scrapy to build spiders.
