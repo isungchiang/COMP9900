@@ -5,8 +5,9 @@ import time
 import random
 import threading
 
-SCROLL_TIMES = 200
+SCROLL_TIMES = 100
 RUNNING_THREADS = 20
+SLEEP_PERIOD = 0.3
 
 ##os.rmdir("C:\\Users\Oscar\Desktop\stockdata")
 prof = {}
@@ -35,9 +36,9 @@ with open('US_codes.txt', 'r') as f:
 #     f.close()
 # print('not found list: ', list_404)
 #
-# with open('checked_list.txt', 'r') as f:
-#     checked_list = f.readlines()
-#     f.close()
+with open('./marketwatch/checked_list.txt', 'r') as f:
+    checked_list = f.readlines()
+    f.close()
 # print('checked list: ', checked_list)
 global running_list
 running_list = []
@@ -48,8 +49,8 @@ running_list = []
 def action(code):
     global running_list
     global date_list, context_list, url_list, title_list, listening_list
-    global csv_dictionary
-    csv_dictionary = {'url':'', 'date':'', 'context':'', 'title':'', 'listening':''}
+    # global csv_dictionary
+    # csv_dictionary = {'url':'', 'date':'', 'context':'', 'title':'', 'listening':''}
     with Browser('firefox',profile_preferences=prof) as browser:
         # Visit URL
 
@@ -60,6 +61,9 @@ def action(code):
         browser.visit(url)
         if browser.is_element_not_present_by_css('.headlinewrapper') or browser.is_element_present_by_text('No News currently available for '):
             # running_list.pop()
+            with open('./marketwatch/checked_list.txt', 'a') as f:
+                f.writelines(code)
+                f.close()
             return
         element = browser.find_by_css('.headlinewrapper').first
         element.mouse_over()
@@ -70,7 +74,7 @@ def action(code):
             while scroll_times > 0:
                 for i in range(0, random.randint(30,50)):
                     element.type(Keys.DOWN)
-                time.sleep(0.5)
+                time.sleep(SLEEP_PERIOD)
                 scroll_times -= 1
         except:
             pass
@@ -126,7 +130,9 @@ def action(code):
         # print((url_list), (title_list), (date_list), (context_list), (listening_list))
         pandas.DataFrame({'url': url_list, 'title': title_list, 'date': date_list, 'context': context_list, 'listening': listening_list}).to_csv('./marketwatch/'+code+".csv", index=False, sep=',')
         # running_list.pop()
-
+    with open('./marketwatch/checked_list.txt', 'a') as f:
+        f.writelines(code)
+        f.close()
 
 
 while codes_list:
@@ -142,9 +148,14 @@ while codes_list:
         if not codes_list:
             break
         code = codes_list.pop(0)
-        t = threading.Thread(target=action, args=(code,), name=code)
-        t.start()
-        running_list.append(t)
+        if code in checked_list:
+            print(code+'checked')
+            continue
+        else:
+            t = threading.Thread(target=action, args=(code,), name=code)
+            t.start()
+            running_list.append(t)
+            checked_list.append(code)
     time.sleep(3)
 
 
