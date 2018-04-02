@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, url_for, redirect
 import config
 from exts import db
-from models import User
+from models import *
 
 app = Flask(__name__)
 app.config.from_object(config)
@@ -53,6 +53,17 @@ def register():
                 db.session.add(user)
                 db.session.commit()
                 return redirect(url_for('login'))
+
+@app.route('/import/')
+def stock():
+    test_stock = Stock(ticker_symbol='AAPL', company='Apple')
+    db.session.add(test_stock)
+    db.session.commit()
+    return 'Import succeed!'
+
+@app.route('/demo/')
+def candlestick():
+    return render_template('candlestickdemo.html')
 
 if __name__ == '__main__':
     app.run()
