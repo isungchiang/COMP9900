@@ -1,14 +1,14 @@
 from splinter import Browser
 from selenium.webdriver.common.keys import Keys
-from selenium.common.exceptions import TimeoutException
-from selenium.common.exceptions import WebDriverException
+from selenium.common.exceptions import NoSuchWindowException
+from selenium.common.exceptions import NoSuchElementException
 import pandas
 import time
 import random
 import threading
 import os
 
-RUNNING_THREADS = 20
+RUNNING_THREADS = 8
 SLEEP_PERIOD = 0.3
 
 ##os.rmdir("C:\\Users\Oscar\Desktop\stockdata")
@@ -58,19 +58,28 @@ def action(csv):
         url = (urls['url'][i])
 
         with Browser('firefox', profile_preferences=prof) as new_browser:
-            new_browser.visit(url)
-            if new_browser.is_element_present_by_id('article-body', wait_time=5):
-                body = str(new_browser.find_by_id('article-body').value)
-                body = body.replace('\n', ' ')
-            else:
+            try:
+                new_browser.visit(url)
+            except:
+                continue
+            try:
+                if new_browser.is_element_present_by_id('article-body'):
+                    try:
+                        body = str(new_browser.find_by_id('article-body').value)
+                        body = body.replace('\n', ' ')
+                    except NoSuchElementException:
+                        body = 'N/A'
+                else:
+                    body = 'N/A'
+            except NoSuchWindowException:
                 body = 'N/A'
-            if new_browser.is_element_present_by_id('published-timestamp', wait_time=5):
+            if new_browser.is_element_present_by_id('published-timestamp'):
                 date = new_browser.find_by_id('published-timestamp')
                 date = str(date.value).replace('Published: ', '')
             else:
                 date = 'N/A'
             # print('date:',date, 'body:',body)
-            if new_browser.is_element_not_present_by_css('.fyre-livecount', wait_time=5):
+            if new_browser.is_element_not_present_by_css('.fyre-livecount'):
                 listening = 'N/A'
             else:
                 if(new_browser.find_by_css('.fyre-livecount')):
