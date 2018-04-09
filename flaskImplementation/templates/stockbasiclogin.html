@@ -1,0 +1,8 @@
+{% extends 'dashboard.html' %}
+
+{% block main %}
+<form action={{ url_for('stockfullinfo') }} method="post">
+    <input type="hidden" name="stockid" value="{{ result }}" />
+    <input type="submit" value="test" />
+</form>
+{% endblock %}

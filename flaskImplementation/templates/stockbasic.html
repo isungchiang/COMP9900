@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <script type="text/javascript" src="/static/javascript/echarts.js"></script>
+    <script src="/static/javascript/jquery-3.3.1.js"></script>
+    <meta id="StockID" data-result="{{ result }}">
+{% endblock %}
+
+{% block RightNav%}
+    <li><a href="{{ url_for('login') }}">Sign in</a></li>
+    <li><a href="{{ url_for('register') }}">Register</a></li>
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div id="daily" style="width: 800px; height: 300px;"></div>
+                <div id="weekly" style="width: 800px; height: 300px;"></div>
+                <div id="monthly" style="width: 800px; height: 300px;"></div>
+                <script type="text/javascript" src="/static/javascript/multipleday.js"></script>
+                <script type="text/javascript" src="/static/javascript/multipleweek.js"></script>
+                <script type="text/javascript" src="/static/javascript/multiplemonth.js"></script>
+                <form action={{ url_for('stockfullinfo') }} method="post">
+                    <input type="hidden" name="stockid" value="{{ result }}" />
+                    <input type="submit" value="Full Screen" />
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

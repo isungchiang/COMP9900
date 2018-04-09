@@ -1,16 +1,48 @@
 {% extends 'base.html' %}
 
 {% block title %}Dashboard{% endblock %}
-{% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <script src="/static/javascript/jquery-3.3.1.js"></script>
+    <meta id="username" data-result="{{ result }}">
+    <script>
+    var username = $("#username").data("result");
+    $.ajax({
+        async: false,
+        type: "GET",
+        url: "http://cs9900fafafa.azurewebsites.net/api/User/GetUserProfile?username=" + username,
+        success: function (profile_data) {
+            window.portfolios = profile_data;
+        }
+    });
+</script>
+{% endblock %}
 {% block LeftNav %}
     <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Portfolio <span class="caret"></span></a>
-      <ul class="dropdown-menu">
-        <li><a href="#">Portfolio 1</a></li>
-        <li role="separator" class="divider"></li>
-        <li><a href="#">Portfolio 2</a></li>
-        <li role="separator" class="divider"></li>
-        <li><a href="#">Portfolio 3</a></li>
+      <ul id="portfolios_dropdown" class="dropdown-menu">
+          <script>
+              var data = window.portfolios;
+              var ul = document.getElementById('portfolios_dropdown');
+              var newportfolio = document.createElement('li');
+              var link = document.createElement('a');
+              link.innerHTML = "New Portfolio";
+              link.setAttribute('href', "#");
+              newportfolio.appendChild(link);
+              for (var key in data) {
+                  var li = document.createElement('li');
+                  var separator = document.createElement('li');
+                  var link = document.createElement('a');
+                  link.setAttribute('href', "#");
+                  link.innerHTML = key;
+                  separator.className = 'divider';
+                  separator.setAttribute('role', "separator");
+                  li.appendChild(link);
+                  ul.appendChild(li);
+                  ul.appendChild(separator);
+              }
+              ul.appendChild(newportfolio);
+          </script>
       </ul>
     </li>
 {% endblock %}
@@ -22,11 +54,20 @@
           <li role="separator" class="divider"></li>
         <li><a href="#">Add Account</a></li>
         <li role="separator" class="divider"></li>
-        <li><a href="#">Sign Out</a></li>
+        <li><a href="{{ url_for('logout') }}">Sign Out</a></li>
       </ul>
     </li>
 {% endblock %}
 
 {% block main %}
-    <h1>This is your Dashboard</h1>
+{#    <table border="1">#}
+{#    {% for key, value in result.iteritems() %}#}
+{#        <tr>#}
+{#            <td>{{ key }}</td>#}
+{#            <td>{{ value }}</td>#}
+{#        </tr>#}
+{#    {% endfor %}#}
+<script>
+    console.log(window.portfolios)
+</script>
 {% endblock %}

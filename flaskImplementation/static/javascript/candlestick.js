@@ -1,29 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
- <meta charset="utf-8">
- <title>5分钟上手ECharts</title>
- <!-- 引入ECharts文件 -->
-    <script type="text/javascript" src="/static/javascript/echarts.js"></script>
-    <script src="/static/javascript/jquery-3.3.1.js"></script>
-</head>
-<body>
- <!-- 为ECharts准备一个具备大小（宽高）的DOM -->
- <div id="main" style="width: 1200px; height: 600px;"></div>
-<!-- js代码 -->
- <script type="text/javascript">
- /*基于准备好的dom，初始化echarts实例*/
  var myChart = echarts.init(document.getElementById('main'));
  var data0;
- {#$.getJSON('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=FXO9ZICGVO904HHE',#}
- {#        function (stock_data) {#}
- {#           data0 = newSplit(stock_data['Time Series (Daily)'])#}
- {#        });#}
+ var stockid = $("#StockID").data("result");
+
  $.ajax({
     async: false,
-    url: 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=FXO9ZICGVO904HHE',
+    url: 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol='+stockid+'&apikey=FXO9ZICGVO904HHE',
     success: function (stock_data) {
-            data0 = newSplit(stock_data['Time Series (Daily)'])
+        data0 = newSplit(stock_data['Time Series (Daily)'])
     }
  });
 
@@ -32,7 +15,6 @@
      var values = [];
 
      for (var timeseries in data){
-         {#var formattime = timeseries.replace('-', '/').replace('-', '/');#}
          categoryData.push(timeseries)
          var value = [];
          for (var item in data[timeseries]){
@@ -66,10 +48,6 @@
   return result;
  }
  option = {
-  title: { //标题
-  text: '上证指数',
-  left: 0
-  },
   tooltip: { //提示框
   trigger: 'axis', //触发类型：坐标轴触发
   axisPointer: { //坐标轴指示器配置项
@@ -250,6 +228,3 @@
  };
  // 使用刚指定的配置项和数据显示图表
  myChart.setOption(option);
- </script>
-</body>
-</html>

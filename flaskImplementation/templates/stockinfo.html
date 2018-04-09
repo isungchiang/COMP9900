@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <script type="text/javascript" src="/static/javascript/echarts.js"></script>
+    <script src="/static/javascript/jquery-3.3.1.js"></script>
+    <meta id="StockID" data-result="{{ result['StockId'] }}">
+{% endblock %}
+
+{% block RightNav%}
+    <li><a href="{{ url_for('login') }}">Sign in</a></li>
+    <li><a href="{{ url_for('register') }}">Register</a></li>
+{% endblock %}
+
+{% block main %}
+    <h2 id="StockId" style="text-align: center">{{ result['Corporation'] }}</h2>
+    <div id="main" style="width: 1400px; height: 700px;"></div>
+    <script type="text/javascript" src="/static/javascript/candlestick.js"></script>
+    <table border="1">
+    {% for key, value in result.iteritems() %}
+        <tr>
+            <td>{{ key }}</td>
+            <td>{{ value[0].StockId }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}
