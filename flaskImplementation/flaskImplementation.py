@@ -33,7 +33,7 @@ def login():
         password_check = json.loads(response.read())["Login Status"]
         if password_check == "Success":
             session['username'] = username
-            return redirect(url_for('dashboard'))
+            return redirect(url_for('profile'))
         else:
             return 'Wrong password'
 
@@ -54,7 +54,7 @@ def register():
             if userExisted["Create User Status"] == "Fail":
                 return 'User existed'
             else:
-                return render_template("login.html")
+                return redirect(url_for('login'))
 
 @app.route('/stockbasic', methods=['POST'])
 def stockbasicinfo():
@@ -127,8 +127,9 @@ def addtransaction():
         return render_template('home.html')
     else:
         if request.method == 'GET':
-            exsitportfolioname = request.args.get('portfolioname')
-            return render_template('addtransaction.html', username=username, portfolio=exsitportfolioname)
+            portfolioname = request.args.get('portfolioname')
+            stockid = request.args.get('stockid')
+            return render_template('addtransaction.html', username=username, portfolio=portfolioname, stockid=stockid)
         else:
             portfolioname = request.form.get('portfolioname')
             stockid = request.form.get('stockid')

@@ -2,6 +2,9 @@
 
 {% block main %}
     <meta id="StockID" data-result="{{ stockid }}">
+    <div class="form-container">
+        <button><a href="http://127.0.0.1:5000/addtransaction?stockid={{ stockid }}">ADD TRANSACTION</a></button>
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-sm-6">

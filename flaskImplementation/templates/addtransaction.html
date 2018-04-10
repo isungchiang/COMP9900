@@ -9,10 +9,24 @@
     <form action="" method="POST">
         <div class="form-container">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Portfolio" name="portfolioname">
+                <script>
+                    if('{{ portfolio }}' == "None"){
+                        document.write('<input type="text" class="form-control" placeholder="Portfolio" name="portfolioname">');
+                    }
+                    else{
+                        document.write('<input type="text" class="form-control" name="portfolioname" value='+'{{ portfolio }}'+' readonly="true">');
+                    }
+                </script>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Stock Code", name="stockid">
+                <script>
+                    if('{{ stockid }}' == "None"){
+                        document.write('<input type="text" class="form-control" placeholder="Stock Code", name="stockid">');
+                    }
+                    else{
+                        document.write('<input type="text" class="form-control"  name="stockid" value='+'{{ stockid }}'+' readonly="true">');
+                    }
+                </script>
             </div>
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Shares" name="shares">
