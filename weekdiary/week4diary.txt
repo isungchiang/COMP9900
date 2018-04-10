@@ -1,0 +1,1 @@
+We got a clear structure of our project. My task is to crawl the news data of individual stocks. I will crawl the codes of the stocks(such as 'AAPL' of apple.inc) first, then search the relative news. Marketwatch is a good choice. I'm trying to analyze it these days.
