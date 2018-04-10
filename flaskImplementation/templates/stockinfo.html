@@ -23,4 +23,24 @@
         </tr>
     {% endfor %}
     </table>
+    <br>
+    <br>
+    <br>
+    <h1>NEWS</h1>
+    <table border="1">
+    <tr>
+        <th>date</th>
+        <th>url</th>
+        <th>listening</th>
+        <th>StockID</th>
+        <th>Title</th>
+    </tr>
+    {% for new in news %}
+        <tr>
+        {% for attribute in new %}
+            <td>{{ new[attribute] }}</td>
+        {% endfor %}
+        </tr>
+    {% endfor %}
+    </table>
 {% endblock %}

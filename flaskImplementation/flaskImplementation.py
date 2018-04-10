@@ -71,11 +71,14 @@ def stockfullinfo():
     url = "http://cs9900fafafa.azurewebsites.net/api/BasicInfo/GetBasicInfo?stockId="
     response = urllib.urlopen(url + stockid)
     stockInfos = json.loads(response.read())
+    news_url = "http://cs9900fafafa.azurewebsites.net/api/BasicInfo/GetNews?stockId="
+    news_response = urllib.urlopen(news_url + stockid)
+    news = json.loads(news_response.read())
     username = session.get('username')
     if username is None:
-        return render_template('stockinfo.html', result=stockInfos)
+        return render_template('stockinfo.html', result=stockInfos, news=news)
     else:
-        return render_template('stockinfologin.html', result=stockInfos, username=username)
+        return render_template('stockinfologin.html', result=stockInfos, news=news, username=username)
 
 @app.route('/logout', methods=['GET'])
 def logout():
@@ -124,7 +127,8 @@ def addtransaction():
         return render_template('home.html')
     else:
         if request.method == 'GET':
-            return render_template('addtransaction.html', username=username)
+            exsitportfolioname = request.args.get('portfolioname')
+            return render_template('addtransaction.html', username=username, portfolio=exsitportfolioname)
         else:
             portfolioname = request.form.get('portfolioname')
             stockid = request.form.get('stockid')
