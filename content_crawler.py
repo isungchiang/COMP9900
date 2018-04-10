@@ -7,9 +7,11 @@ import time
 import random
 import threading
 import os
+import time
 
-RUNNING_THREADS = 8
+RUNNING_THREADS = 5
 SLEEP_PERIOD = 0.3
+BIG_500 = False
 
 ##os.rmdir("C:\\Users\Oscar\Desktop\stockdata")
 prof = {}
@@ -23,27 +25,42 @@ prof['browser.helperApps.useWindow'] = 'false'
 prof['browser.helperApps.showAlertonComplete'] = 'false'
 prof['browser.helperApps.alertOnEXEOpen'] = 'false'
 prof['browser.download.manager.focusWhenStarting']= 'false'
+prof['browser.javascript.enabled']= False
+prof['permissions.default.image']= 2
+prof['dom.ipc.plugins.enabled.libflashplayer.so']= False
 prof['webdriver.load.strategy'] =  'unstable'
 prof['browser.load.strategy'] =  'unstable'
 
 code_list = []
-for csvs in (os.listdir('./')):
-    if 'URL' not in csvs:
-        continue
-    if 'txt' in csvs:
-        continue
-    else:
-        code_list.append(csvs)
+if (BIG_500==False):
+    for csvs in (os.listdir('./')):
+        if 'URL' not in csvs:
+            continue
+        if 'txt' in csvs:
+            continue
+        else:
+            code_list.append(csvs)
+else:
+    with open('big_15.txt', 'r') as f:
+        for i in f.readlines():
+            code_list.append(i)
+        f.close()
+
 code_list.sort()
+print(code_list)
 
 with open('./404_URL_list.txt', 'r') as f:
     list_404 = f.readlines()
     f.close()
 # print('not found list: ', list_404)
 #
+checked_list = []
 with open('./checked_URL_list.txt', 'r') as f:
-    checked_list = f.readlines()
+    for i in f.readlines():
+        checked_ = i.replace('\n', '')
+        checked_list.append(checked_)
     f.close()
+print(checked_list)
 
 def action(csv):
     urls = pandas.read_csv(csv)
@@ -54,9 +71,23 @@ def action(csv):
     content_list = []
     listening_list = []
     print('start: ' + csv + ' ' + ' ' + 'len: ' + str(len(urls['code'])))
+    check_points = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+    start_time = time.clock()
     for i in range(0, len(urls['code'])):
-        url = (urls['url'][i])
+        if check_points:
+            ## progress bar
+            print_progress = False
+            while i/len(urls['code'])>check_points[0]:
+                finished_ = check_points.pop(0)
+                print_progress = True
+            if print_progress:
+                for pr in range(0, int(finished_*10)):
+                    print('x', end='')
+                for pr in range(0, int(10-finished_*10)):
+                    print('-', end='')
+                print(' | estimated resisting time: '+str((time.clock()-start_time)*(1-i/len(urls['code']))) )
 
+        url = (urls['url'][i])
         with Browser('firefox', profile_preferences=prof) as new_browser:
             try:
                 new_browser.visit(url)
@@ -75,7 +106,10 @@ def action(csv):
                 body = 'N/A'
             if new_browser.is_element_present_by_id('published-timestamp'):
                 date = new_browser.find_by_id('published-timestamp')
-                date = str(date.value).replace('Published: ', '')
+                try:
+                    date = str(date.value).replace('Published: ', '')
+                except:
+                    date= 'N/A'
             else:
                 date = 'N/A'
             # print('date:',date, 'body:',body)
@@ -100,7 +134,7 @@ def action(csv):
     code = str(csv).replace('URL', '')
     code = code.replace('.csv', '')
     pandas.DataFrame({'code': code_list, 'url': url_list, 'title': title_list, 'date':date_list, 'listening':listening_list, 'content': content_list}).to_csv(
-        './marketwatch_content/' + 'ccontent_' + code + ".csv", index=False, sep=',')
+        './marketwatch_content/' + 'content_' + code + ".csv", index=False, sep=',')
     print('|'+code+'|' + ' finish')
     with open('./checked_URL_list.txt', 'a') as f:
         f.writelines(csv+'\n')
@@ -120,6 +154,8 @@ def action(csv):
 #
 running_list = []
 
+
+
 while code_list:
     # print('rest codes', len(codes_list))
     for threads in running_list:
@@ -130,9 +166,9 @@ while code_list:
     while len(running_list) < RUNNING_THREADS:
         if not code_list:
             break
-        csv = code_list.pop(0)+'\n'
+        csv = code_list.pop(0)
         if csv in checked_list:
-            print(csv+'checked')
+            print('|'+csv+'| checked')
             # print('rest:', len(codes_list))
             continue
         if csv in list_404:
@@ -145,9 +181,22 @@ while code_list:
             t.start()
             running_list.append(t)
             checked_list.append(csv)
+            break
     time.sleep(3)
 
-
-
-
-
+# l = []
+# with open('big_companies.txt', 'r') as f:
+#     for i in f.readlines():
+#         codes = i.split()
+#         num = codes[0]
+#         csv = codes[1]
+#         l.append(csv)
+#         if int(num) < 500:
+#             break
+#     f.close()
+#
+#
+# with open('big_500.txt', 'w') as f:
+#     for i in l:
+#         f.writelines(i+'\n')
+#     f.close()
