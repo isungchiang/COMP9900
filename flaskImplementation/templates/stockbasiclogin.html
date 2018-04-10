@@ -1,8 +1,21 @@
 {% extends 'dashboard.html' %}
 
 {% block main %}
-<form action={{ url_for('stockfullinfo') }} method="post">
-    <input type="hidden" name="stockid" value="{{ result }}" />
-    <input type="submit" value="test" />
-</form>
+    <meta id="StockID" data-result="{{ stockid }}">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div id="daily" style="width: 800px; height: 300px;"></div>
+                <div id="weekly" style="width: 800px; height: 300px;"></div>
+                <div id="monthly" style="width: 800px; height: 300px;"></div>
+                <script type="text/javascript" src="/static/javascript/multipleday.js"></script>
+                <script type="text/javascript" src="/static/javascript/multipleweek.js"></script>
+                <script type="text/javascript" src="/static/javascript/multiplemonth.js"></script>
+                <form action={{ url_for('stockfullinfo') }} method="post">
+                    <input type="hidden" name="stockid" value="{{ stockid }}" />
+                    <input type="submit" value="Full Screen" />
+                </form>
+            </div>
+        </div>
+    </div>
 {% endblock %}

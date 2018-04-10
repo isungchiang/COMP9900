@@ -1,17 +1,10 @@
 from flask import Flask, render_template, request, url_for, redirect, session
 import config
-from exts import db
-from models import *
 import urllib
 import json
 
 app = Flask(__name__)
 app.config.from_object(config)
-db.init_app(app)
-
-# Create all tables;
-# with app.app_context():
-#     db.create_all()
 
 @app.route('/')
 def home():
@@ -20,18 +13,15 @@ def home():
     else:
         return redirect(url_for('dashboard'))
 
-@app.route('/dashboard/', methods=['GET', 'POST'])
+@app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
     username = session.get('username')
     if username is None:
         return render_template('home.html')
     else:
-        url = "http://cs9900fafafa.azurewebsites.net/api/User/GetUserProfile?username="+username
-        response = urllib.urlopen(url)
-        profileInfo = json.loads(response.read())
-        return render_template('dashboard.html', result=username)
+        return render_template('userprofile.html', username=username)
 
-@app.route('/login/', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
         return render_template('login.html')
@@ -47,7 +37,7 @@ def login():
         else:
             return 'Wrong password'
 
-@app.route('/register/', methods=['GET', 'POST'])
+@app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'GET':
         return render_template('register.html')
@@ -66,40 +56,88 @@ def register():
             else:
                 return render_template("login.html")
 
-@app.route('/stockbasic/', methods=['POST'])
+@app.route('/stockbasic', methods=['POST'])
 def stockbasicinfo():
     stockid = request.form.get('stockid')
-    if session.get('username') is None:
-        return render_template('stockbasic.html', result=stockid)
+    username = session.get('username')
+    if username is None:
+        return render_template('stockbasic.html', stockid=stockid)
     else:
-        return render_template('stockbasiclogin.html', result=stockid)
+        return render_template('stockbasiclogin.html', stockid=stockid, username=username)
 
-@app.route('/stockfull/', methods=['POST'])
+@app.route('/stockfull', methods=['POST'])
 def stockfullinfo():
     stockid = request.form.get('stockid')
     url = "http://cs9900fafafa.azurewebsites.net/api/BasicInfo/GetBasicInfo?stockId="
     response = urllib.urlopen(url + stockid)
     stockInfos = json.loads(response.read())
-    if session.get('username') is None:
+    username = session.get('username')
+    if username is None:
         return render_template('stockinfo.html', result=stockInfos)
     else:
-        return render_template('stockinfologin.html', result=stockInfos)
+        return render_template('stockinfologin.html', result=stockInfos, username=username)
 
-@app.route('/logout/', methods=['GET'])
+@app.route('/logout', methods=['GET'])
 def logout():
     session.pop('username')
     return render_template('home.html')
 
-@app.route('/demo/')
-def demo():
-    return render_template('multipledemo.html')
+@app.route('/portfolio')
+def portfolio():
+    username = session.get('username')
+    if username is None:
+        return render_template('home.html')
+    else:
+        portfolioname = request.args.get('portfolioname')
+        return render_template('portfolioinfo.html', username=username, portfolio=portfolioname)
 
-# @app.route('/import/')
-# def stock():
-#     test_stock = Stock(ticker_symbol='AAPL', company='Apple')
-#     db.session.add(test_stock)
-#     db.session.commit()
-#     return 'Import succeed!'
+@app.route('/createportfolio', methods=['GET', 'POST'])
+def createportfolio():
+    username = session.get('username')
+    if username is None:
+        return render_template('home.html')
+    else:
+        if request.method == 'GET':
+            return render_template('createportfolio.html', username=username)
+        else:
+            portfolioname = request.form.get('portfolioname')
+            url = "http://cs9900fafafa.azurewebsites.net/api/Portfolio/AddPortfolio?username="+username+"&portfolioname="+portfolioname
+            response = urllib.urlopen(url)
+            portfolioExisted = json.loads(response.read())["Create portfolio Status"]
+            if portfolioExisted == "Success":
+                return render_template('userprofile.html', username=username)
+            else:
+                return "Create Portfolio Failed"
+
+@app.route('/profile')
+def profile():
+    username = session.get('username')
+    if username is None:
+        return render_template('home.html')
+    else:
+        return render_template('userprofile.html', username=username)
+
+@app.route('/addtransaction', methods=['GET', 'POST'])
+def addtransaction():
+    username = session.get('username')
+    if username is None:
+        return render_template('home.html')
+    else:
+        if request.method == 'GET':
+            return render_template('addtransaction.html', username=username)
+        else:
+            portfolioname = request.form.get('portfolioname')
+            stockid = request.form.get('stockid')
+            shares = request.form.get('shares')
+            tradedate = request.form.get('tradedate')
+            tradeprice = request.form.get('tradeprice')
+            url = "http://cs9900fafafa.azurewebsites.net/api/Portfolio/CreateTransaction?username="+username+"&portfolioname="+portfolioname+"&StockId="+stockid+"&Shares="+shares+"&TradeDate="+tradedate+"&TradePrice="+tradeprice
+            response = urllib.urlopen(url)
+            transactionStatus = json.loads(response.read())["Create Transaction Status"]
+            if transactionStatus == "Success":
+                return render_template('portfolioinfo.html', username=username, portfolio=portfolioname)
+            else:
+                return "Add transaction Failed."
 
 if __name__ == '__main__':
     app.run()

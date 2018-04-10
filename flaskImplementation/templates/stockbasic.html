@@ -3,7 +3,7 @@
 {% block head %}
     <script type="text/javascript" src="/static/javascript/echarts.js"></script>
     <script src="/static/javascript/jquery-3.3.1.js"></script>
-    <meta id="StockID" data-result="{{ result }}">
+    <meta id="StockID" data-result="{{ stockid }}">
 {% endblock %}
 
 {% block RightNav%}
@@ -22,7 +22,7 @@
                 <script type="text/javascript" src="/static/javascript/multipleweek.js"></script>
                 <script type="text/javascript" src="/static/javascript/multiplemonth.js"></script>
                 <form action={{ url_for('stockfullinfo') }} method="post">
-                    <input type="hidden" name="stockid" value="{{ result }}" />
+                    <input type="hidden" name="stockid" value="{{ stockid }}" />
                     <input type="submit" value="Full Screen" />
                 </form>
             </div>

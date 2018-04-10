@@ -1,3 +1,10 @@
 h1{
     text-align: center;
 }
+.form-container{
+    width: 300px;
+    margin: 0 auto;
+}
+.page-title{
+    text-align: center;
+}

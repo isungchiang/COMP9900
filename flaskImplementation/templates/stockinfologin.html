@@ -1,12 +1,7 @@
 {% extends 'dashboard.html' %}
 
-{% block head %}
-    <script type="text/javascript" src="/static/javascript/echarts.js"></script>
-    <script src="/static/javascript/jquery-3.3.1.js"></script>
-    <meta id="StockID" data-result="{{ result['StockId'] }}">
-{% endblock %}
-
 {% block main %}
+    <meta id="StockID" data-result="{{ result['StockId'] }}">
     <h2 id="StockId" style="text-align: center">{{ result['Corporation'] }}</h2>
     <div id="main" style="width: 1400px; height: 700px;"></div>
     <script type="text/javascript" src="/static/javascript/candlestick.js"></script>

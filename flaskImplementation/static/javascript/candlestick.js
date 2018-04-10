@@ -55,7 +55,7 @@
   }
   },
   legend: { //图例控件，点击图例控制哪些系列不现实
-  data: ['日K', 'MA5', 'MA10', 'MA20', 'MA30']
+  data: ['Daily', 'MA5', 'MA10', 'MA20', 'MA30']
   },
   grid: { //直角坐标系
   show:true,
@@ -98,7 +98,7 @@
   ],
   series: [ //图表类型
   {
-   name: '日K',
+   name: 'Daily',
    type: 'candlestick', //K线图
    data: data0.values, //y轴对应的数据
  ////////////////////////图标标注/////////////////////////////

@@ -1,0 +1,44 @@
+{% extends 'dashboard.html' %}
+
+{% block main %}
+    <div class="form-container">
+        <button><a href="http://127.0.0.1:5000/addtransaction">ADD TRANSACTION</a></button>
+    </div>
+    <script>
+    var index = 0
+    for(portfolioname in window.portfolios) {
+        document.write('<h1><a href="http://127.0.0.1:5000/portfolio?portfolioname='+portfolioname+'">Portfolio:'+portfolioname+'</a></h1>')
+        document.write('<table id="portfolio_table_'+index+'" align="center" border="1">')
+        var table = document.getElementById("portfolio_table_"+index);
+        var portfolio = window.portfolios[portfolioname];
+        if (portfolio.length > 0) {
+            var tr = document.createElement('tr');
+            for (var head in portfolio[0]) {
+                var th = document.createElement('th');
+                th.innerHTML = head;
+                tr.appendChild(th);
+            }
+            table.appendChild(tr);
+            for (var stock in portfolio) {
+                var tr = document.createElement('tr');
+                for (var attribute in portfolio[stock]) {
+                    var tb = document.createElement('td');
+                    tb.innerHTML = portfolio[stock][attribute];
+                    tr.appendChild(tb);
+                }
+                table.appendChild(tr);
+            }
+        }
+        else {
+            document.write('<tr>');
+            document.write('<th>StockId</th>');
+            document.write('<th>Shares</th>');
+            document.write('<th>TradeDate</th>');
+            document.write('<th>TradePrice</th>');
+            document.write('</tr>');
+        }
+        index ++;
+        document.write('</table>')
+    }
+    </script>
+{% endblock %}

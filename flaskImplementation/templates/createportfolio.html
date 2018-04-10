@@ -1,0 +1,19 @@
+{% extends 'dashboard.html' %}
+
+{% block main %}
+    <br>
+    <br>
+    <br>
+    <h2 class="page-title">CREATE PORTFOLIO</h2>
+    <br>
+    <form method="POST">
+        <div class="form-container">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Portfolio Name" name="portfolioname">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-block">Create</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}
