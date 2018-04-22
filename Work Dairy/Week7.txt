@@ -1,0 +1,3 @@
+Week7
+
+I drew the DAY/WEEK/MONTH and also the candlestick charts based on Echarts.js framework, which is pretty challenging to me. I read the documentation and examples of others' work, developing our own ones with ajax accessing the stock time series data offered by AlphaVantage. I'll start to look at the layout and design of the website and try to present a better-looking and friendly website in the next week demo.

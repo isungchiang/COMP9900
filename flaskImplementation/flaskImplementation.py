@@ -74,6 +74,7 @@ def stockfullinfo():
     news_url = "http://cs9900fafafa.azurewebsites.net/api/BasicInfo/GetNews?stockId="
     news_response = urllib.urlopen(news_url + stockid)
     news = json.loads(news_response.read())
+    print(news)
     username = session.get('username')
     if username is None:
         return render_template('stockinfo.html', result=stockInfos, news=news)

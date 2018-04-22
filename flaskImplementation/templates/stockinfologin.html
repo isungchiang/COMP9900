@@ -4,10 +4,14 @@
     <meta id="StockID" data-result="{{ result['StockId'] }}">
     <h2 id="StockId" style="text-align: center">{{ result['Corporation'] }}</h2>
     <div class="form-container">
-        <button><a href="http://127.0.0.1:5000/addtransaction?stockid={{ stockid }}">ADD TRANSACTION</a></button>
+        <button><a href="http://127.0.0.1:5000/addtransaction?stockid={{ result['StockId'] }}">ADD TRANSACTION</a></button>
     </div>
     <div id="main" style="width: 1400px; height: 700px;"></div>
     <script type="text/javascript" src="/static/javascript/candlestick.js"></script>
+    <br>
+    <br>
+    <br>
+    <h1>BASIC INFO</h1>
     <table border="1">
     {% for key, value in result.iteritems() %}
         <tr>

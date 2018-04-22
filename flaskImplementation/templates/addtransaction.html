@@ -24,6 +24,7 @@
                         document.write('<input type="text" class="form-control" placeholder="Stock Code", name="stockid">');
                     }
                     else{
+                        console.log('{{ stockid }}');
                         document.write('<input type="text" class="form-control"  name="stockid" value='+'{{ stockid }}'+' readonly="true">');
                     }
                 </script>

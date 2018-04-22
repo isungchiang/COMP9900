@@ -15,6 +15,10 @@
     <h2 id="StockId" style="text-align: center">{{ result['Corporation'] }}</h2>
     <div id="main" style="width: 1400px; height: 700px;"></div>
     <script type="text/javascript" src="/static/javascript/candlestick.js"></script>
+    <br>
+    <br>
+    <br>
+    <h1>BASIC INFO</h1>
     <table border="1">
     {% for key, value in result.iteritems() %}
         <tr>
@@ -35,6 +39,14 @@
         <th>StockID</th>
         <th>Title</th>
     </tr>
+{#    <script>#}
+{#        var news = '{{ news }}';#}
+{#        console.log(typeof news);#}
+{#        console.log(news);#}
+{#        for(var i = 0; i < news.length; i++){#}
+{#            document.write('<a href="'+news[i]['url']+'"><h2>'+news[i]['title']+'</h2></a>')#}
+{#        }#}
+{#    </script>#}
     {% for new in news %}
         <tr>
         {% for attribute in new %}
