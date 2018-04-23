@@ -13,4 +13,7 @@ Week5
 This week I began to catch news from websites, to ready for our news function.
 
 Week6
-This week we do mid demo. I begin to build addtional fuction and improve interface.
+This week we do mid demo. I begin building addtional fuction and improving interface.
+
+Week7
+This week I imporved the chart change mode of three basic chart and the part of interfaces of our websites.
