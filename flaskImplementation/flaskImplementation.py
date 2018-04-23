@@ -65,6 +65,12 @@ def stockbasicinfo():
     else:
         return render_template('stockbasiclogin.html', stockid=stockid, username=username)
 
+
+
+
+
+
+6+52
 @app.route('/stockfull', methods=['POST'])
 def stockfullinfo():
     stockid = request.form.get('stockid')

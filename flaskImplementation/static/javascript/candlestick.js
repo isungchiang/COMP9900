@@ -1,6 +1,11 @@
  var myChart = echarts.init(document.getElementById('main'));
  var data0;
+ var data1;
  var stockid = $("#StockID").data("result");
+var downColor = '#ec0000';
+var downBorderColor = '#8A0000';
+var upColor = '#00da3c';
+var upBorderColor = '#008F28';
 
  $.ajax({
     async: false,
@@ -10,16 +15,28 @@
     }
  });
 
+  $.ajax({
+    async: false,
+    url: 'https://www.alphavantage.co/query?function=RSI&symbol='+stockid+'&interval=daily&time_period=7&series_type=open&apikey=FXO9ZICGVO904HHE',
+    success: function (stock_data) {
+        data1 = rsi(stock_data['Technical Analysis: RSI'])
+    }
+ });
+
  function newSplit(data) {
      var categoryData = [];
      var values = [];
 
      for (var timeseries in data){
-         categoryData.push(timeseries)
+         categoryData.push(timeseries);
          var value = [];
-         for (var item in data[timeseries]){
-             value.push(parseFloat(data[timeseries][item]));
-         }
+         // for (var item in data[timeseries]){
+         //     value.push(parseFloat(data[timeseries][item]));
+         // }
+         value.push(parseFloat(data[timeseries]['1. open']));
+         value.push(parseFloat(data[timeseries]['4. close']));
+         value.push(parseFloat(data[timeseries]['3. low']));
+         value.push(parseFloat(data[timeseries]['2. high']));
          values.push(value.splice(0,4));
      }
      return {
@@ -27,204 +44,235 @@
              values: values.reverse()  //数组中的数据 y轴对应的数据
      };
  }
- //计算MA平均线，N日移动平均线=N日收盘价之和/N dayCount要计算的天数(5,10,20,30)
- function calculateMA(dayCount) {
-  var result = [];
-  for (var i = 0, len = data0.values.length; i < len; i++) {
-  if (i < dayCount) {
-   result.push('-');
-   //alert(result);
-   continue; //结束单次循环，即不输出本次结果
-  }
-  var sum = 0;
-  for (var j = 0; j < dayCount; j++) {
-   //收盘价总和
-   sum += data0.values[i - j][1];
-   //alert(sum);
-  }
-  result.push(sum / dayCount);
-  // alert(result);
-  }
-  return result;
+
+  function rsi(data) {
+     var categoryData = [];
+     var values = [];
+
+     for (var timeseries in data){
+         categoryData.push(timeseries);
+         values.push(parseFloat(data[timeseries]['RSI']));
+     }
+     return {
+             categoryData: categoryData.reverse(), //数组中的日期 x轴对应的日期
+             values: values.reverse()  //数组中的数据 y轴对应的数据
+     };
  }
- option = {
-  tooltip: { //提示框
-  trigger: 'axis', //触发类型：坐标轴触发
-  axisPointer: { //坐标轴指示器配置项
-   type: 'cross' //指示器类型，十字准星
-  }
-  },
-  legend: { //图例控件，点击图例控制哪些系列不现实
-  data: ['Daily', 'MA5', 'MA10', 'MA20', 'MA30']
-  },
-  grid: { //直角坐标系
-  show:true,
-  left: '10%', //grid组件离容器左侧的距离
-  right: '10%',
-  bottom: '15%',
-  //backgroundColor:'#ccc'
-  },
-  xAxis: {
-  type: 'category', //坐标轴类型，类目轴
-  data: data0.categoryData,
-  //scale: true, //只在数字轴中有效
-  boundaryGap : false, //刻度作为分割线，标签和数据点会在两个刻度上
-  axisLine: {onZero: false},
-  splitLine: {show: false}, //是否显示坐标轴轴线
-  //splitNumber: 20, //坐标轴的分割段数，预估值，在类目轴中无效
-  min: 'dataMin', //特殊值，数轴上的最小值作为最小刻度
-  max: 'dataMax' //特殊值，数轴上的最大值作为最大刻度
-  },
-  yAxis: {
-  scale: true, //坐标刻度不强制包含零刻度
-  splitArea: {
-   show: true //显示分割区域
-  }
-  },
-  dataZoom: [ //用于区域缩放
-  {
-   filterMode:'filter', //当前数据窗口外的数据被过滤掉来达到数据窗口缩放的效果 默认值filter
-   type: 'inside', //内置型数据区域缩放组件
-   start: 50, //数据窗口范围的起始百分比
-   end: 100 //数据窗口范围的结束百分比
-  },
-  {
-   show: true,
-   type: 'slider', //滑动条型数据区域缩放组件
-   y: '90%',
-   start: 50,
-   end: 100
-  }
-  ],
-  series: [ //图表类型
-  {
-   name: 'Daily',
-   type: 'candlestick', //K线图
-   data: data0.values, //y轴对应的数据
- ////////////////////////图标标注/////////////////////////////
-   markPoint: { //图表标注
-   label: { //标注的文本
-    normal: { //默认不显示标注
-    show:true,
-    //position:['20%','30%'],
-    formatter: function (param) { //标签内容控制器
-     return param != null ? Math.round(param.value) : '';
+
+function calculateMA(dayCount) {
+    var result = [];
+    for (var i = 0, len = data0.values.length; i < len; i++) {
+        if (i < dayCount) {
+            result.push('-');
+            continue;
+        }
+        var sum = 0;
+        for (var j = 0; j < dayCount; j++) {
+            sum += data0.values[i - j][1];
+        }
+
+        result.push(sum / dayCount);
     }
-    }
-   },
-   data: [ //标注的数据数组
-    {
-    name: 'XX标点',
-    coord: ['2013/5/31', 2300], //指定数据的坐标位置
-    value: 2300,
-    itemStyle: { //图形样式
-     normal: {color: 'rgb(41,60,85)'}
-    }
+    return result;
+}
+
+
+
+option = {
+    title: {
+        text: stockid,
+        left: 0
     },
-    {
-    name: 'highest value',
-    type: 'max', //最大值
-    valueDim: 'highest' //在highest维度上的最大值 最高价
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross'
+        }
     },
-    {
-    name: 'lowest value',
-    type: 'min',
-    valueDim: 'lowest' //最低价
+    legend: {
+        data: ['Daily', 'MA5', 'MA10', 'MA20', 'MA30', 'RSI']
     },
-    {
-    name: 'average value on close',
-    type: 'average',
-    valueDim: 'close' //收盘价
-    }
-   ],
-   tooltip: { //提示框
-    formatter: function (param) {
-    return param.name + '<br>' + (param.data.coord || '');
-    }
-   }
-   },
-/////////////////////////////////图标标线///////////////////////////
-   markLine: {
-   symbol: ['none', 'none'], //标线两端的标记类型
-   data: [
-    [
-    {
-     name: 'from lowest to highest',
-     type: 'min', //设置该标线为最小值的线
-     valueDim: 'lowest', //指定在哪个维度上的最小值
-     symbol: 'circle',
-     symbolSize: 10, //起点标记的大小
-     label: { //normal默认，emphasis高亮
-     normal: {show: false}, //不显示标签
-     emphasis: {show: false} //不显示标签
-     }
+    grid: {
+        left: '10%',
+        right: '10%',
+        bottom: '15%'
     },
-    {
-     type: 'max',
-     valueDim: 'highest',
-     symbol: 'circle',
-     symbolSize: 10,
-     label: {
-     normal: {show: false},
-     emphasis: {show: false}
-     }
-    }
+    xAxis: {
+        type: 'category',
+        data: data0.categoryData,
+        scale: true,
+        boundaryGap : false,
+        axisLine: {onZero: false},
+        splitLine: {show: false},
+        splitNumber: 20,
+        min: 'dataMin',
+        max: 'dataMax'
+    },
+    yAxis: {
+        scale: true,
+        splitArea: {
+            show: true
+        }
+    },
+    dataZoom: [
+        {
+            type: 'inside',
+            start: 50,
+            end: 100
+        },
+        {
+            show: true,
+            type: 'slider',
+            y: '90%',
+            start: 50,
+            end: 100
+        }
     ],
+    series: [
+        {
+            name: 'Daily',
+            type: 'candlestick',
+            data: data0.values,
+            itemStyle: {
+                normal: {
+                    color: upColor,
+                    color0: downColor,
+                    borderColor: upBorderColor,
+                    borderColor0: downBorderColor
+                }
+            },
+            markPoint: {
+                label: {
+                    normal: {
+                        formatter: function (param) {
+                            return param != null ? Math.round(param.value) : '';
+                        }
+                    }
+                },
+                data: [
+                    {
+                        name: 'XX标点',
+                        coord: ['2013/5/31', 2300],
+                        value: 2300,
+                        itemStyle: {
+                            normal: {color: 'rgb(41,60,85)'}
+                        }
+                    },
+                    {
+                        name: 'highest value',
+                        type: 'max',
+                        valueDim: 'highest',
+                        itemStyle: {
+                            normal: {color: upBorderColor}
+                        }
+                    },
+                    {
+                        name: 'lowest value',
+                        type: 'min',
+                        valueDim: 'lowest',
+                        itemStyle: {
+                            normal: {color: downBorderColor}
+                        }
+                    },
+                    {
+                        name: 'average value on close',
+                        type: 'average',
+                        valueDim: 'close'
+                    }
+                ],
+                tooltip: {
+                    formatter: function (param) {
+                        return param.name + '<br>' + (param.data.coord || '');
+                    }
+                }
+            },
+            markLine: {
+                symbol: ['none', 'none'],
+                data: [
+                    [
+                        {
+                            name: 'from lowest to highest',
+                            type: 'min',
+                            valueDim: 'lowest',
+                            symbol: 'circle',
+                            symbolSize: 10,
+                            label: {
+                                normal: {show: false},
+                                emphasis: {show: false}
+                            }
+                        },
+                        {
+                            type: 'max',
+                            valueDim: 'highest',
+                            symbol: 'circle',
+                            symbolSize: 10,
+                            label: {
+                                normal: {show: false},
+                                emphasis: {show: false}
+                            }
+                        }
+                    ],
+                    {
+                        name: 'min line on close',
+                        type: 'min',
+                        valueDim: 'close'
+                    },
+                    {
+                        name: 'max line on close',
+                        type: 'max',
+                        valueDim: 'close'
+                    }
+                ]
+            }
+        },
+        {
+            name: 'MA5',
+            type: 'line',
+            data: calculateMA(5),
+            smooth: true,
+            lineStyle: {
+                normal: {opacity: 0.5}
+            }
+        },
+        {
+            name: 'MA10',
+            type: 'line',
+            data: calculateMA(10),
+            smooth: true,
+            lineStyle: {
+                normal: {opacity: 0.5}
+            }
+        },
+        {
+            name: 'MA20',
+            type: 'line',
+            data: calculateMA(20),
+            smooth: true,
+            lineStyle: {
+                normal: {opacity: 0.5}
+            }
+        },
+        {
+            name: 'MA30',
+            type: 'line',
+            data: calculateMA(30),
+            smooth: true,
+            lineStyle: {
+                normal: {opacity: 0.5}
+            }
+        },
 
-    {
-    name: 'min line on close',
-    type: 'min',
-    valueDim: 'close'
-    },
-    {
-    name: 'max line on close',
-    type: 'max',
-    valueDim: 'close'
-    }
-   ]
+        {
+            name: 'RSI',
+            type: 'scatter',
+            data: data1.values,
+            symbol: 'triangle'
+        },
 
-   }
 
-  },
+    ]
+};
 
-  { //MA5 5天内的收盘价之和/5
-   name: 'MA5',
-   type: 'line',
-   data: calculateMA(5),
-   smooth: true,
-   lineStyle: {
-   normal: {opacity: 0.5}
-   }
-  },
-  {
-   name: 'MA10',
-   type: 'line',
-   data: calculateMA(10),
-   smooth: true,
-   lineStyle: { //标线的样式
-   normal: {opacity: 0.5}
-   }
-  },
-  {
-   name: 'MA20',
-   type: 'line',
-   data: calculateMA(20),
-   smooth: true,
-   lineStyle: {
-   normal: {opacity: 0.5}
-   }
-  },
-  {
-   name: 'MA30',
-   type: 'line',
-   data: calculateMA(30),
-   smooth: true,
-   lineStyle: {
-   normal: {opacity: 0.5}
-   }
-  },
 
-  ]
- };
  // 使用刚指定的配置项和数据显示图表
  myChart.setOption(option);

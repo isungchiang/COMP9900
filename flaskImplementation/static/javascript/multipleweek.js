@@ -67,7 +67,23 @@ option = {
         },
         {
             name:'volume',
-            type:'bar',
+            type:'line',
+            itemStyle: {
+                normal: {
+                    color: '#5b7da2'
+                }
+            },
+            areaStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0,
+                        color: '#4891b1'
+                    }, {
+                        offset: 1,
+                        color: '#d3dfed'
+                    }])
+                }
+            },
             data:data0.volume
         }
     ]
