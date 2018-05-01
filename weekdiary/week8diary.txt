@@ -1,0 +1,1 @@
+This week we missed our demo due to Anzac day. However we did not stop our work. I crawled the news data again for the final demo. And I add two technical indicators into our candle stick. The indicators are not showed directly but after filter. They could help ordinary users more in some ways.
