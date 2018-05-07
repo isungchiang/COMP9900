@@ -1,0 +1,27 @@
+{% extends 'dashboard.html' %}
+
+{% block main %}
+    <meta id="StockID" data-result="{{ stockid }}">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div style="margin-left: 45%">
+                    <button class="bottoncss" style="background-color:#5b7da2; color: #fff;">daily</button>
+                    <button class="bottoncss">weekly</button>
+                    <button class="bottoncss">monthly</button>
+                </div>
+                <div id="daily" style="width: 800px; height: 300px;margin-top: 10%;"></div>
+                <div id="weekly" style="width: 800px; height: 300px;display: none;margin-top: 10%;"></div>
+                <div id="monthly" style="width: 800px; height: 300px;display: none;margin-top: 10%;"></div>
+                <script type="text/javascript" src="/static/javascript/multipleday.js"></script>
+                <script type="text/javascript" src="/static/javascript/multipleweek.js"></script>
+                <script type="text/javascript" src="/static/javascript/multiplemonth.js"></script>
+                <form action={{ url_for('stockfullinfo') }} method="post">
+                    <input type="hidden" name="stockid" value="{{ stockid }}" />
+                    <input class="bottoncss" type="submit" value="Full Screen" style="width: 100px;"/>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="/static/javascript/chartchange.js"></script>
+{% endblock %}
