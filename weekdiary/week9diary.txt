@@ -1,0 +1,1 @@
+This week we merged our work and met some problem. The most important is the project takes too long time to read. Thus we decided to reprecess the data and store in the api. I spent most of my time on it. I also implemented news marking function with spacy package. It can help a lot. Finally we made it. The next work is to make the system more stable and improve UI.
