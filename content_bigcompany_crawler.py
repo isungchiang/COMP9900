@@ -37,7 +37,7 @@ if (BIG_500==False):
     for csvs in (os.listdir('./')):
         if 'URL' not in csvs:
             continue
-        if 'txt' in csvs:
+        if '.csv' not in csvs:
             continue
         else:
             code_list.append(csvs)
@@ -102,6 +102,12 @@ def action(csv):
         #     last_finished = finished_
 
         url = (urls['url'][i])
+        title = (urls['title'][i])
+        print(title)
+        if title in title_list:
+            i+=1
+            print(code+' checked')
+            continue
         with Browser('firefox', profile_preferences=prof, headless=True) as new_browser:
             try:
                 new_browser.visit(url)
@@ -160,7 +166,7 @@ def action(csv):
             content_list.append(body)
             relative_list.append(relative_company)
         i+=1
-        if(i==SAVE_PERIOD):
+        if(i>=SAVE_PERIOD):
             code = str(csv).replace('URL', '')
             code = code.replace('.csv', '')
             pandas.DataFrame({'code': code_list, 'url': url_list, 'title': title_list, 'date': date_list,
