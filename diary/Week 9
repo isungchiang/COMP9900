@@ -1,0 +1,3 @@
+This week i fix many bug in current api.
+The yahoo finance statistic page has too many elements and most of them are relative.
+We decide not to crawl this page any more.
