@@ -1,0 +1,1 @@
+This week we proceeded the last demo. There's a little bug in our system. Next we will improve the system logic and refresh the data. One of my task is to crawl some latest news and uploaded the marks. Unfortunately some bugs happened in selenium and splinter. I'll try my best to fix it and finish it before the due.
