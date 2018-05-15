@@ -1,43 +1,48 @@
 {% extends 'dashboard.html' %}
 
-{% block main %}
+{% block liactive %}
+    <li><a href="http://127.0.0.1:5000/">Home</a></li>
+    <li><a href="http://127.0.0.1:5000/stockbasic?stockid={{ stockid }}">Basic</a></li>
+    <li class="active"><a href="http://127.0.0.1:5000/stockfull?stockid={{ stockid }}">Full Screen</a></li>
+    <li><a href="http://127.0.0.1:5000/news?stockid={{ stockid }}">News</a></li>
+    <li><a href="http://127.0.0.1:5000/usersummary">Profile</a></li>
+    <li><a href="http://127.0.0.1:5000/contact?stockid={{ stockid }}">Contact</a></li>
+{% endblock %}
+
+{% block after %}
     <meta id="StockID" data-result="{{ result['StockId'] }}">
     <h2 id="StockId" style="text-align: center">{{ result['Corporation'] }}</h2>
-    <div class="form-container">
-        <button><a href="http://127.0.0.1:5000/addtransaction?stockid={{ result['StockId'] }}">ADD TRANSACTION</a></button>
-    </div>
-    <div id="main" style="width: 1400px; height: 700px;"></div>
+    <div id="main" style="width: 1400px; height: 700px;margin:auto;"></div>
     <script type="text/javascript" src="/static/javascript/candlestick.js"></script>
-    <br>
-    <br>
-    <br>
-    <h1>BASIC INFO</h1>
-    <table border="1">
-    {% for key, value in result.iteritems() %}
-        <tr>
-            <td>{{ key }}</td>
-            <td>{{ value }}</td>
-        </tr>
-    {% endfor %}
-    </table>
-    <br>
-    <br>
-    <br>
-    <h1>NEWS</h1>
-    <table border="1">
-    <tr>
-        <th>date</th>
-        <th>url</th>
-        <th>listening</th>
-        <th>StockID</th>
-        <th>Title</th>
-    </tr>
-    {% for new in news %}
-        <tr>
-        {% for attribute in new %}
-            <td>{{ new[attribute] }}</td>
-        {% endfor %}
-        </tr>
-    {% endfor %}
-    </table>
+{% endblock %}
+
+{% block main %}
+<div class="hcharts-right">
+                    <h3>STOCK RATING</h3>
+                    <div class="pie" id="dppj" data-highcharts-chart="11">
+                        <div class="highcharts-container" id="highcharts-35" style="width: 200px; height: 200px; text-align: left; line-height: normal; overflow: hidden; position: relative; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                            <svg xmlns="http://www.w3.org/2000/svg" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" width="200" height="200" version="1.1">
+                                <desc>Created with Highcharts 4.1.5</desc>
+                                <defs>
+                                    <clipPath id="highcharts-36">
+                                        <rect x="0" y="0" width="180" height="175" />
+                                    </clipPath>
+                                </defs>
+                                <rect class=" highcharts-background" fill="#ffffff" x="0" y="0" width="200" height="200" strokeWidth="0" />
+                                <g class="highcharts-series-group" zIndex="3">
+                                    <g class="highcharts-series highcharts-tracker" visibility="visible" style="" transform="translate(10 10) scale(1)" zIndex="0.1">
+                                        <path fill="#d75442" stroke-linejoin="round" transform="translate(0)" d="M 89.9817 -2 A 90 90 0 1 1 11.0784 44.7406 L 22.1274 50.7969 A 77.4 77.4 0 1 0 89.9842 10.6 Z" />
+                                        <path fill="#f5f5f5" stroke-linejoin="round" transform="translate(0)" d="M 11.1217 44.6617 A 90 90 0 0 1 89.875 -1.99991 L 89.8925 10.6001 A 77.4 77.4 0 0 0 22.1646 50.7291 Z" />
+                                    </g>
+                                    <g class="highcharts-markers" visibility="visible" transform="translate(10 10) scale(1)" zIndex="0.1" />
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="data-label">
+                            Score: <strong style="color: #d75442">8.3</strong>
+                        </div>
+                    </div>
+                    <p><label>Investment suggestion</label></p>
+                    <p id="tzjy">Positive recommendation</p>
+                </div>
 {% endblock %}

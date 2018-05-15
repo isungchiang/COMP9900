@@ -1,0 +1,35 @@
+{% extends 'basechange.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tablecss.css') }}">
+    <script type="text/javascript" src="/static/javascript/echarts.js"></script>
+    <script src="/static/javascript/jquery-3.3.1.js"></script>
+    <meta id="StockID" data-result="{{ stockid }}">
+
+{% endblock %}
+
+{% block RightNav%}
+    <li><a href="{{ url_for('login') }}">Sign in</a></li>
+    <li><a href="{{ url_for('register') }}">Register</a></li>
+{% endblock %}
+
+{% block liactive %}
+    <li><a href="http://127.0.0.1:5000/">Home</a></li>
+    <li><a href="http://127.0.0.1:5000/stockbasic?stockid={{ stockid }}">Basic</a></li>
+    <li><a href="http://127.0.0.1:5000/stockfull?stockid={{ stockid }}">Full Screen</a></li>
+    <li><a href="http://127.0.0.1:5000/news?stockid={{ stockid }}">News</a></li>
+    <li><a href="http://127.0.0.1:5000/profile">Profile</a></li>
+    <li class="active"><a href="http://127.0.0.1:5000/contact?stockid={{ stockid }}">Contact</a></li>
+{% endblock %}
+
+{% block after %}
+    <h2 id="StockId" style="text-align: center">{{ result['Corporation'] }}</h2>
+    <table border="1" id="table-1">
+    {% for key, value in result.iteritems() %}
+        <tr>
+            <td>{{ key }}</td>
+            <td>{{ value }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

@@ -1,5 +1,11 @@
 {% extends 'dashboard.html' %}
 
+{% block liactive %}
+    <li><a href="http://127.0.0.1:5000/usersummary">Summary</a></li>
+    <li><a href="http://127.0.0.1:5000/userasset">Assets</a></li>
+    <li><a href="http://127.0.0.1:5000/usertransaction">Transaction History</a></li>
+{% endblock %}
+
 {% block main %}
     <br>
     <br>
