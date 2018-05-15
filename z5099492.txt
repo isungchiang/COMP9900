@@ -17,3 +17,15 @@ This week we do mid demo. I begin building addtional fuction and improving inter
 
 Week7
 This week I imporved the chart change mode of three basic chart and the part of interfaces of our websites.
+
+Week8
+change the mode of the basic graph, set a new table css for all our tables.
+
+Week9
+Change our websites switch mode, set a switch bar, imporve the interface. Imporve the full graph.
+
+Week10
+set different echarts for our portfolio webs.
+
+Week11
+Fix bugs, prepare for presentation.
