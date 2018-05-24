@@ -1,3 +1,0 @@
-Week8
-
-After the mid-term demo, we were told that we focused on the additional features too much, without enough attention on the portfolio side. So, this week I developed more functionality to portfolio management, adding edit and delete operation of transaction and more interaction between this two systems.

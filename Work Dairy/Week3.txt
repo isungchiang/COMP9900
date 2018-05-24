@@ -1,3 +1,0 @@
-Week3
-
-After discuss and some research on every topic, we decided to go with the third one, as some of us had experience on web services, graphDB access and also frontend development. It seems that everyone of us could do some contribution on this topic. We drafted the proposal document on the Google Doc and I mainly focused on the Epic since I had some knowledge on the MVC structure and what kind of knowledge will be needed in every process. I also drew the structure layout of how it's gonna work as a whole, using draw.io, which I learned from groupmates of COMP9323. We were assigned different tasks to work on and I would be building the basic functionality. Excited to get started!
