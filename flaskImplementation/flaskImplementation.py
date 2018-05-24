@@ -62,6 +62,7 @@ def stockbasicinfo():
         stockid = request.form.get('stockid')
     else:
         stockid = request.args.get('stockid')
+    stockid = str(stockid).upper()
     username = session.get('username')
     if username is None:
         return render_template('stockbasic.html', stockid=stockid)
@@ -74,14 +75,37 @@ def stockfullinfo():
         stockid = request.form.get('stockid')
     else:
         stockid = request.args.get('stockid')
+    stockid = str(stockid).upper()
     url = "http://comp9900fafafa.azurewebsites.net/api/BasicInfo/GetBasicInfo?stockId="
     response = urllib.urlopen(url + stockid)
     stockInfos = json.loads(response.read())
+
+    url = 'http://comp9900fafafa.azurewebsites.net/api/BasicInfo/GetStat?stockId='
+    response = urllib.urlopen(url + stockid)
+    read = response.read()
+    marks = json.loads(read)
+    refresh_date = []
+    content = []
+    try:
+        detail = marks[0]['json']
+        detail = str(detail).replace('\'', '\"')
+        detail = json.loads(detail, encoding='utf-8')
+        refresh_date.append(detail['last_refresh_date'])
+        print(detail['marks'][detail['last_refresh_date']]['labels'])
+        labels = detail['marks'][detail['last_refresh_date']]['labels']
+        for i in labels:
+            if labels[i]['labels']==0:
+                content_ = '<strong style = "color: #d75442">'+ labels[i]['content']+'</strong>'
+            else:
+                content_ = '<strong style = "color: #69D694">' + labels[i]['content'] + '</strong>'
+            content.append(content_)
+    except:
+        pass
     username = session.get('username')
     if username is None:
-        return render_template('stockinfo.html', stockid=stockid, result=stockInfos)
+        return render_template('stockinfo.html', stockid=stockid, result=stockInfos, refresh_date=refresh_date,content=content)
     else:
-        return render_template('stockinfologin.html', stockid=stockid, result=stockInfos, username=username)
+        return render_template('stockinfologin.html', stockid=stockid, result=stockInfos, username=username, refresh_date=refresh_date,content=content)
 
 @app.route('/logout', methods=['GET'])
 def logout():
@@ -139,10 +163,12 @@ def addtransaction():
         if request.method == 'GET':
             portfolioname = request.args.get('portfolioname')
             stockid = request.args.get('stockid')
+            stockid = str(stockid).upper()
             return render_template('addtransaction.html', username=username, portfolio=portfolioname, stockid=stockid)
         else:
             portfolioname = request.form.get('portfolioname')
             stockid = request.form.get('stockid')
+            stockid = str(stockid).upper()
             shares = request.form.get('shares')
             tradedate = request.form.get('tradedate')
             tradeprice = request.form.get('tradeprice')
@@ -162,6 +188,7 @@ def deletetransaction():
     else:
         portfolioname = request.args.get('Portfolioname')
         stockid = request.args.get('StockId')
+        stockid = str(stockid).upper()
         shares = request.args.get('Shares')
         tradedate = request.args.get('TradeDate')
         tradeprice = request.args.get('TradePrice')
@@ -182,6 +209,7 @@ def edittransaction():
         if request.method == 'GET':
             portfolioname = request.args.get('Portfolioname')
             stockid = request.args.get('StockId')
+            stockid = str(stockid).upper()
             shares = request.args.get('Shares')
             tradedate = request.args.get('TradeDate')
             tradeprice = request.args.get('TradePrice')
@@ -189,10 +217,12 @@ def edittransaction():
         else:
             portfolioname = request.args.get('Portfolioname')
             stockid = request.args.get('StockId')
+            stockid = str(stockid).upper()
             shares = request.args.get('Shares')
             tradedate = request.args.get('TradeDate')
             tradeprice = request.args.get('TradePrice')
             newstockid = request.form.get('stockid')
+            newstockid = str(newstockid).upper()
             newshares = request.form.get('shares')
             newtradedate = request.form.get('tradedate')
             newtradeprice = request.form.get('tradeprice')
@@ -211,18 +241,27 @@ def edittransaction():
 @app.route('/news', methods=['GET'])
 def shownews():
     stockid = request.args.get('stockid')
+    stockid = str(stockid).upper()
     news_url = "http://comp9900fafafa.azurewebsites.net/api/BasicInfo/GetNews?stockId="
     news_response = urllib.urlopen(news_url + stockid)
     news = json.loads(news_response.read())
     username = session.get('username')
+    relative = {}
+    for news_ in news:
+        if news_['relative'].split(',')[0] == 'N/A':
+            relative[news_['title']] = []
+            continue
+        relative[news_['title']] = news_['relative'].split(',')
+
     if username is None:
-        return render_template('news.html', stockid=stockid, news=news)
+        return render_template('news.html', stockid=stockid, news=news, relative=relative)
     else:
-        return render_template('newslogin.html', stockid=stockid, news=news, username=username)
+        return render_template('newslogin.html', stockid=stockid, news=news, username=username, relative=relative)
 
 @app.route('/contact', methods=['GET'])
 def showcontact():
     stockid = request.args.get('stockid')
+    stockid = str(stockid).upper()
     url = "http://comp9900fafafa.azurewebsites.net/api/BasicInfo/GetBasicInfo?stockId="
     response = urllib.urlopen(url + stockid)
     stockInfos = json.loads(response.read())

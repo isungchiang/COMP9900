@@ -1,9 +1,8 @@
 {% extends 'dashboard.html' %}
 
 {% block liactive %}
-    <script>
-    document.write('<li><a href="http://127.0.0.1:5000/portfoliosummary?portfolioname='+'{{ portfolio }}'+'">Summary</a></li>')
-    </script>
+    <li><a href="http://127.0.0.1:5000/usersummary">Summary</a></li>
+
     <li class="active"><a href="http://127.0.0.1:5000/userasset">Assets</a></li>
     <script>
     document.write('<li><a href="http://127.0.0.1:5000/portfolio?portfolioname='+'{{ portfolio }}'+'">Transaction History</a></li>')
@@ -11,12 +10,29 @@
 {% endblock %}
 
 {% block main %}
-    <br>
-    <br>
-    <br>
     <h1>Portfolio:  {{ portfolio }}</h1>
     <br>
+    <div id="portfolioassets" style="width: 1000px; height: 500px;margin:auto;"></div>
     <script>
+        var myChart = echarts.init(document.getElementById('portfolioassets'))
+        var stockNamelist = []
+        var stockGainlist = []
+        var portfoliosInfo = {}
+        var itemRight={
+            normal:{
+                color:'#69d694'
+            }
+        };
+        var labelRight = {
+            normal: {
+                position: 'right'
+            }
+        };
+        var labelLeft = {
+            normal: {
+                position: 'left'
+            }
+        };
         var portfolioname = '{{ portfolio }}';
         var portfolio = window.portfolios[portfolioname];
         if (portfolio.length > 0) {
@@ -52,16 +68,72 @@
                 totalGain += stocks[stockid]['Total Gain']
                 totalAsset += stocks[stockid]['Current Asset']
                 totalOriginalAsset += stocks[stockid]['Original Asset']
+                stockNamelist.push(portfolioname+':'+stockid)
+                if (stocks[stockid]['Total Gain']>=0){
+                    stockGainlist.push({value:stocks[stockid]['Total Gain'],label:labelRight,itemStyle:itemRight})
+                }else{
+                    stockGainlist.push({value:stocks[stockid]['Total Gain'],label:labelLeft})
+                }
+
             }
             var portfolioInfo = {}
             portfolioInfo['Stock Info'] = stocks
             portfolioInfo['Portfolio Info'] = {'Total Asset':totalAsset, 'Total Original Asset':totalOriginalAsset, 'Total Gain':totalGain}
+
+            portfoliosInfo[portfolioname] = portfolioInfo
         }
         else{
             document.write('<h2>This portfolio is currently empty</h2>');
         }
-        console.log(portfolioInfo)
+
+        option = {
+            title: {
+                text: 'Gain Table',
+                subtext: 'From ExcelHome',
+                sublink: 'http://e.weibo.com/1341556070/AjwF2AgQm'
+            },
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                    type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            grid: {
+                top: 80,
+                bottom: 30
+            },
+            xAxis: {
+                type : 'value',
+                position: 'top',
+                splitLine: {lineStyle:{type:'dashed'}},
+            },
+            yAxis: {
+                type : 'category',
+                axisLine: {show: false},
+                axisLabel: {show: false},
+                axisTick: {show: false},
+                splitLine: {show: false},
+                data : stockNamelist,
+            },
+            series : [
+                {
+                    name:'Gain',
+                    type:'bar',
+                    stack: '总量',
+                    label: {
+                        normal: {
+                            show: true,
+                            formatter: '{b}'
+                        }
+                    },
+                    data:stockGainlist,
+                }
+            ]
+        };
+        myChart.setOption(option);
     </script>
+{#    <div id="portfolioasset" style="width: 1000px; height: 500px;margin:auto;"></div>#}
+{#    <script type="text/javascript" src="/static/javascript/portfolioasset.js"></script>#}
     <br>
     <br>
     <div class="form-container">

@@ -1,17 +1,18 @@
 {% extends 'dashboard.html' %}
 
 {% block liactive %}
-    <li><a href="http://127.0.0.1:5000/">Home</a></li>
+{#    <li><a href="http://127.0.0.1:5000/">Home</a></li>#}
     <li><a href="http://127.0.0.1:5000/stockbasic?stockid={{ stockid }}">Basic</a></li>
     <li><a href="http://127.0.0.1:5000/stockfull?stockid={{ stockid }}">Full Screen</a></li>
     <li><a href="http://127.0.0.1:5000/news?stockid={{ stockid }}">News</a></li>
-    <li><a href="http://127.0.0.1:5000/profile">Profile</a></li>
+    <li><a href="http://127.0.0.1:5000/usersummary">Profile</a></li>
     <li class="active"><a href="http://127.0.0.1:5000/contact?stockid={{ stockid }}">Contact</a></li>
+    <li><a href="http://127.0.0.1:5000/addtransaction?stockid={{ stockid }}">Add Transaction</a></li>
 {% endblock %}
 
-{% block after %}
+{% block main %}
     <meta id="StockID" data-result="{{ result['StockId'] }}">
-    <h2 id="StockId" style="text-align: center">{{ result['Corporation'] }}</h2>
+    <h1 id="StockId" style="text-align: center">{{ result['Corporation'] }}</h1>
     <table border="1" id="table-1">
     {% for key, value in result.iteritems() %}
         <tr >

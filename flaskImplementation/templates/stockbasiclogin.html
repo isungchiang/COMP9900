@@ -1,12 +1,13 @@
 {% extends 'dashboard.html' %}
 
 {% block liactive %}
-    <li><a href="http://127.0.0.1:5000/">Home</a></li>
+{#    <li><a href="http://127.0.0.1:5000/">Home</a></li>#}
     <li class="active"><a href="http://127.0.0.1:5000/stockbasic?stockid={{ stockid }}">Basic</a></li>
     <li><a href="http://127.0.0.1:5000/stockfull?stockid={{ stockid }}">Full Screen</a></li>
     <li><a href="http://127.0.0.1:5000/news?stockid={{ stockid }}">News</a></li>
     <li><a href="http://127.0.0.1:5000/usersummary">Profile</a></li>
     <li><a href="http://127.0.0.1:5000/contact?stockid={{ stockid }}">Contact</a></li>
+    <li><a href="http://127.0.0.1:5000/addtransaction?stockid={{ stockid }}">Add Transaction</a></li>
 {% endblock %}
 
 {% block main %}
@@ -25,10 +26,10 @@
                 <script type="text/javascript" src="/static/javascript/multipleday.js"></script>
                 <script type="text/javascript" src="/static/javascript/multipleweek.js"></script>
                 <script type="text/javascript" src="/static/javascript/multiplemonth.js"></script>
-                <form action={{ url_for('stockfullinfo') }} method="post">
-                    <input type="hidden" name="stockid" value="{{ stockid }}" />
-                    <input class="bottoncss" type="submit" value="Full Screen" style="width: 100px;"/>
-                </form>
+{#                <form action={{ url_for('stockfullinfo') }} method="post">#}
+{#                    <input type="hidden" name="stockid" value="{{ stockid }}" />#}
+{#                    <input class="bottoncss" type="submit" value="Full Screen" style="width: 100px;"/>#}
+{#                </form>#}
 {#            </div>#}
 {#        </div>#}
 {#    </div>#}

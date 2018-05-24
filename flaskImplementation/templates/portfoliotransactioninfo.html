@@ -1,8 +1,8 @@
 {% extends 'dashboard.html' %}
 
 {% block liactive %}
+    <li><a href="http://127.0.0.1:5000/usersummary">Summary</a></li>
     <script>
-    document.write('<li><a href="http://127.0.0.1:5000/portfoliosummary?portfolioname='+'{{ portfolio }}'+'">Summary</a></li>')
     document.write('<li><a href="http://127.0.0.1:5000/portfolioasset?portfolioname='+'{{ portfolio }}'+'">Assets</a></li>')
     </script>
     <li class="active"><a href="http://127.0.0.1:5000/usertransaction">Transaction History</a></li>
@@ -14,9 +14,9 @@
     <br>
     <h1>Portfolio:  {{ portfolio }}</h1>
     <br>
-    <table id="portfolio_table" align="center" border="1">
+    <table id="table-1" align="center" border="1">
     <script>
-        var table = document.getElementById("portfolio_table");
+        var table = document.getElementById("table-1");
         var portfolioname = '{{ portfolio }}';
         var portfolio = window.portfolios[portfolioname];
         if (portfolio.length > 0) {

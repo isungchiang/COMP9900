@@ -1,3 +1,0 @@
-Week4
-
-I've been building the basic structure of the portfolio system, which will give them a base to work on and add other additional feature. I used to use JAVA EE but this time I want to try with Python Flask, Sqlalchemy, MySQL and Bootstrap or other frontend template frame. It went well but there're still problems to overcome and I'm also learning JS for charts drafting like the classic candlestick pattern.

@@ -1,3 +1,0 @@
-Week6
-
-This week is a huge jump for my work, because it's the first demo week. We swapped to only use Azure Neo4j graph DB developed by Yisong, as it's much easier to visualise the connection of user and portfolio. I connected the frontend and backend of user part, and also developed the workflow of creating and managing portfolio.

@@ -13,23 +13,19 @@
 {% endblock %}
 
 {% block liactive %}
-    <li><a href="http://127.0.0.1:5000/">Home</a></li>
+{#    <li><a href="http://127.0.0.1:5000/">Home</a></li>#}
     <li><a href="http://127.0.0.1:5000/stockbasic?stockid={{ stockid }}">Basic</a></li>
     <li><a href="http://127.0.0.1:5000/stockfull?stockid={{ stockid }}">Full Screen</a></li>
     <li class="active"><a href="http://127.0.0.1:5000/news?stockid={{ stockid }}">News</a></li>
-    <li><a href="http://127.0.0.1:5000/usersummary">Profile</a></li>
     <li><a href="http://127.0.0.1:5000/contact?stockid={{ stockid }}">Contact</a></li>
 {% endblock %}
 
 {% block main %}
-    <br>
-    <br>
-    <br>
     <h1>NEWS</h1>
     <table border="1" id="table-1">
     <tr>
         <th>Title</th>
-        <th>Url</th>
+{#        <th>Url</th>#}
         <th>Mark</th>
         <th>Relative</th>
         <th>StockId</th>
@@ -42,10 +38,14 @@
 {#        {% endfor %}#}
 {#        </tr>#}
         <tr>
-            <td>{{ new['title'] }}</td>
-            <td><a href="{{ new['url'] }}">{{ new['url'] }}</a></td>
+            <td><a href="{{ new['url'] }}">{{ new['title'] }}</a></td>
+{#            <td><a href="{{ new['url'] }}">{{ new['url'] }}</a></td>#}
+{#            <td>{{ relative[new['title']] }}</td>#}
             <td>{{ new['mark'] }}</td>
-            <td>{{ new['relative'] }}</td>
+            <td> {%  for stkid in relative[new['title']] %}
+                <a href="http://127.0.0.1:5000/stockfull?stockid={{ stkid }}">{{ stkid }}</a>
+                {% endfor %}
+            </td>
             <td>{{ new['StockId'] }}</td>
             <td>{{ new['date'] }}</td>
         </tr>

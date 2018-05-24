@@ -1,3 +1,0 @@
-Week10
-
-I created another section of the profile, which is the asset, as we consider the the best way to reflect the status of the user profile is the asset, where it shows the allocation or the distribution of your asset. It requires some calculation other than just use the data feed from the API and I did the whole data part within JS using ajax and send the project to Rongfa, who will continue to do some visualization upon it.

@@ -3,9 +3,6 @@
  var data1;
  var data2;
  var stockid = $("#StockID").data("result");
- // console.log(stockid);
- // var stock_id = (stockid.toString()).toUpperCase();
- // console.log(stock_id);
 var downColor = '#ec0000';
 var downBorderColor = '#8A0000';
 var upColor = '#00da3c';
@@ -50,8 +47,8 @@ var upBorderColor = '#008F28';
 
      }
      return {
-             categoryData: categoryData.reverse(), //数组中的日期 x轴对应的日期
-             values: values.reverse()  //数组中的数据 y轴对应的数据
+             categoryData: categoryData.reverse(),
+             values: values.reverse()
      };
  }
 
@@ -64,8 +61,8 @@ var upBorderColor = '#008F28';
          values.push(parseFloat((data[data_1.categoryData[timeseries]])['RSI']));
      }
      return {
-             categoryData: categoryData.reverse(), //数组中的日期 x轴对应的日期
-             values: values.reverse()  //数组中的数据 y轴对应的数据
+             categoryData: categoryData.reverse(),
+             values: values.reverse()
      };
  }
 
@@ -78,8 +75,8 @@ var upBorderColor = '#008F28';
          values.push(Math.abs(parseFloat((data[data_1.categoryData[timeseries]])['WILLR'])));
      }
      return {
-             categoryData: categoryData.reverse(), //数组中的日期 x轴对应的日期
-             values: values.reverse()  //数组中的数据 y轴对应的数据
+             categoryData: categoryData.reverse(),
+             values: values.reverse()
      };
  }
 
@@ -90,15 +87,6 @@ var upBorderColor = '#008F28';
 
      for(var i=0, len=data_2.length;i<len;i++) {
          if(i > 1) {
-             // if(data_2[data_1.categoryData[i]] >
-             //     data_2[data_1.categoryData[i-1]] ||
-             //     data_2[data_1.categoryData[i-1]]  >
-             //     data_2[data_1.categoryData[i-2]] ||
-             //     data_2[data_1.categoryData[i]] <= 70 ||
-             //     data_2[data_1.categoryData[i-2]] >=40) {
-             //
-             //     buy.push(data_1.values[i]+20);
-             // }
              if(data_2[i] >
                  data_2[i-1] &&
                  data_2[i-1]  >
@@ -172,7 +160,7 @@ var upBorderColor = '#008F28';
              sell.push(null);
          }
      }
-     console.log(buy);
+     // console.log(buy);
      return {
          sells: sell,
          buys: buy
@@ -303,44 +291,6 @@ option = {
                     }
                 }
             },
-            // markLine: {
-            //     symbol: ['none', 'none'],
-            //     data: [
-            //         [
-            //             {
-            //                 name: 'from lowest to highest',
-            //                 type: 'min',
-            //                 valueDim: 'lowest',
-            //                 symbol: 'circle',
-            //                 symbolSize: 10,
-            //                 label: {
-            //                     normal: {show: false},
-            //                     emphasis: {show: false}
-            //                 }
-            //             },
-            //             {
-            //                 type: 'max',
-            //                 valueDim: 'highest',
-            //                 symbol: 'circle',
-            //                 symbolSize: 10,
-            //                 label: {
-            //                     normal: {show: false},
-            //                     emphasis: {show: false}
-            //                 }
-            //             }
-            //         ],
-            //         {
-            //             name: 'min line on close',
-            //             type: 'min',
-            //             valueDim: 'close'
-            //         },
-            //         {
-            //             name: 'max line on close',
-            //             type: 'max',
-            //             valueDim: 'close'
-            //         }
-            //     ]
-            // }
         },
         {
             name: 'MA5',
@@ -417,6 +367,4 @@ option = {
     ]
 };
 
-
- // 使用刚指定的配置项和数据显示图表
  myChart.setOption(option);
