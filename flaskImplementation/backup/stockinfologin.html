@@ -1,0 +1,43 @@
+{% extends 'dashboard.html' %}
+
+{% block main %}
+    <meta id="StockID" data-result="{{ result['StockId'] }}">
+    <h2 id="StockId" style="text-align: center">{{ result['Corporation'] }}</h2>
+    <div class="form-container">
+        <button><a href="http://127.0.0.1:5000/addtransaction?stockid={{ result['StockId'] }}">ADD TRANSACTION</a></button>
+    </div>
+    <div id="main" style="width: 1400px; height: 700px;"></div>
+    <script type="text/javascript" src="/static/javascript/candlestick.js"></script>
+    <br>
+    <br>
+    <br>
+    <h1>BASIC INFO</h1>
+    <table border="1">
+    {% for key, value in result.iteritems() %}
+        <tr>
+            <td>{{ key }}</td>
+            <td>{{ value }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+    <br>
+    <br>
+    <br>
+    <h1>NEWS</h1>
+    <table border="1">
+    <tr>
+        <th>date</th>
+        <th>url</th>
+        <th>listening</th>
+        <th>StockID</th>
+        <th>Title</th>
+    </tr>
+    {% for new in news %}
+        <tr>
+        {% for attribute in new %}
+            <td>{{ new[attribute] }}</td>
+        {% endfor %}
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

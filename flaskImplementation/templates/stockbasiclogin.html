@@ -1,0 +1,37 @@
+{% extends 'dashboard.html' %}
+
+{% block liactive %}
+{#    <li><a href="http://127.0.0.1:5000/">Home</a></li>#}
+    <li class="active"><a href="http://127.0.0.1:5000/stockbasic?stockid={{ stockid }}">Basic</a></li>
+    <li><a href="http://127.0.0.1:5000/stockfull?stockid={{ stockid }}">Full Screen</a></li>
+    <li><a href="http://127.0.0.1:5000/news?stockid={{ stockid }}">News</a></li>
+    <li><a href="http://127.0.0.1:5000/usersummary">Profile</a></li>
+    <li><a href="http://127.0.0.1:5000/contact?stockid={{ stockid }}">Contact</a></li>
+    <li><a href="http://127.0.0.1:5000/addtransaction?stockid={{ stockid }}">Add Transaction</a></li>
+{% endblock %}
+
+{% block main %}
+    <meta id="StockID" data-result="{{ stockid }}">
+{#    <div class="container">#}
+{#        <div class="row" >#}
+{#            <div class="col-sm-6">#}
+                <div style="margin-left: 40%">
+                    <button class="bottoncss" style="background-color:#5b7da2; color: #fff;" >daily</button>
+                    <button class="bottoncss">weekly</button>
+                    <button class="bottoncss">monthly</button>
+                </div>
+                <div id="daily" style="margin-left: 15%;width: 900px; height: 300px;margin-top: 10%;"></div>
+                <div id="weekly" style="margin-left: 15%;width: 900px; height: 300px;display: none;margin-top: 10%;"></div>
+                <div id="monthly" style="margin-left: 15%;width: 900px; height: 300px;display: none;margin-top: 10%;"></div>
+                <script type="text/javascript" src="/static/javascript/multipleday.js"></script>
+                <script type="text/javascript" src="/static/javascript/multipleweek.js"></script>
+                <script type="text/javascript" src="/static/javascript/multiplemonth.js"></script>
+{#                <form action={{ url_for('stockfullinfo') }} method="post">#}
+{#                    <input type="hidden" name="stockid" value="{{ stockid }}" />#}
+{#                    <input class="bottoncss" type="submit" value="Full Screen" style="width: 100px;"/>#}
+{#                </form>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+    <script src="/static/javascript/chartchange.js"></script>
+{% endblock %}

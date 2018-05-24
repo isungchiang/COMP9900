@@ -1,0 +1,54 @@
+{% extends 'basechange.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tablecss.css') }}">
+    <script type="text/javascript" src="/static/javascript/echarts.js"></script>
+    <script src="/static/javascript/jquery-3.3.1.js"></script>
+    <meta id="StockID" data-result="{{ 'StockId'}}">
+{% endblock %}
+
+{% block RightNav%}
+    <li><a href="{{ url_for('login') }}">Sign in</a></li>
+    <li><a href="{{ url_for('register') }}">Register</a></li>
+{% endblock %}
+
+{% block liactive %}
+{#    <li><a href="http://127.0.0.1:5000/">Home</a></li>#}
+    <li><a href="http://127.0.0.1:5000/stockbasic?stockid={{ stockid }}">Basic</a></li>
+    <li><a href="http://127.0.0.1:5000/stockfull?stockid={{ stockid }}">Full Screen</a></li>
+    <li class="active"><a href="http://127.0.0.1:5000/news?stockid={{ stockid }}">News</a></li>
+    <li><a href="http://127.0.0.1:5000/contact?stockid={{ stockid }}">Contact</a></li>
+{% endblock %}
+
+{% block main %}
+    <h1>NEWS</h1>
+    <table border="1" id="table-1">
+    <tr>
+        <th>Title</th>
+{#        <th>Url</th>#}
+        <th>Mark</th>
+        <th>Relative</th>
+        <th>StockId</th>
+        <th>Date</th>
+    </tr>
+    {% for new in news %}
+{#        <tr>#}
+{#        {% for attribute in new %}#}
+{#            <td>{{ new[attribute] }}</td>#}
+{#        {% endfor %}#}
+{#        </tr>#}
+        <tr>
+            <td><a href="{{ new['url'] }}">{{ new['title'] }}</a></td>
+{#            <td><a href="{{ new['url'] }}">{{ new['url'] }}</a></td>#}
+{#            <td>{{ relative[new['title']] }}</td>#}
+            <td>{{ new['mark'] }}</td>
+            <td> {%  for stkid in relative[new['title']] %}
+                <a href="http://127.0.0.1:5000/stockfull?stockid={{ stkid }}">{{ stkid }}</a>
+                {% endfor %}
+            </td>
+            <td>{{ new['StockId'] }}</td>
+            <td>{{ new['date'] }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

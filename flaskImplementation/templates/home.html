@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">{% endblock %}
+{% block title %}Home{% endblock %}
+
+{% block RightNav%}
+    <li><a href="{{ url_for('login') }}">Sign in</a></li>
+    <li><a href="{{ url_for('register') }}">Register</a></li>
+{% endblock %}
+{% block main %}
+    <br>
+    <br>
+    <br>
+    <h1>Please Log in!</h1>
+{% endblock %}
+

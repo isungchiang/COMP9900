@@ -1,0 +1,15 @@
+{% extends 'dashboard.html' %}
+
+{% block liactive %}
+    <li class="active"><a href="http://127.0.0.1:5000/usersummary">Summary</a></li>
+    <li><a href="http://127.0.0.1:5000/userasset">Assets</a></li>
+    <li><a href="http://127.0.0.1:5000/usertransaction">Transaction History</a></li>
+{% endblock %}
+
+{% block main %}
+    <div id="usersummary" style="width: 800px; height: 500px;margin:auto;"></div>
+    <script type="text/javascript" src="/static/javascript/usersummary.js"></script>
+    <div class="form-container">
+        <button class="bottoncss" style="width: 200px;margin-top: 100px;margin-left: 15%"><a href="http://127.0.0.1:5000/addtransaction">ADD TRANSACTION</a></button>
+    </div>
+{% endblock %}

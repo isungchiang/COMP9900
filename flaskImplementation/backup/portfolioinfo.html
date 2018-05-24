@@ -1,0 +1,79 @@
+{% extends 'dashboard.html' %}
+
+{% block main %}
+    <br>
+    <br>
+    <br>
+    <h1>Portfolio:  {{ portfolio }}</h1>
+    <br>
+    <table id="portfolio_table" align="center" border="1">
+    <script>
+        var table = document.getElementById("portfolio_table");
+        var portfolioname = '{{ portfolio }}';
+        var portfolio = window.portfolios[portfolioname];
+        if (portfolio.length > 0) {
+            var tr = document.createElement('tr');
+            for(var head in portfolio[0]){
+                var th = document.createElement('th');
+                th.innerHTML = head;
+                tr.appendChild(th);
+            }
+            var operation = document.createElement('tr')
+            operation.innerHTML = 'Operation'
+            tr.appendChild(operation)
+            table.appendChild(tr);
+            for(var stock in portfolio){
+                var stockAttribute = {}
+                var tr = document.createElement('tr');
+                for(var attribute in portfolio[stock]) {
+                    stockAttribute[attribute] = portfolio[stock][attribute]
+                    var tb = document.createElement('td');
+                    tb.innerHTML = portfolio[stock][attribute];
+                    tr.appendChild(tb);
+                }
+                var edit_href = "http://127.0.0.1:5000/edittransaction?Portfolioname="+portfolioname+"&"
+                var href = "http://127.0.0.1:5000/deletetransaction?Portfolioname="+portfolioname+"&"
+                for (var attribute in stockAttribute){
+                    href += attribute
+                    href += "="
+                    href += stockAttribute[attribute]
+                    href += "&"
+                    edit_href += attribute
+                    edit_href += "="
+                    edit_href += stockAttribute[attribute]
+                    edit_href += "&"
+                }
+                href = href.substring(0, href.length-1)
+                edit_href = edit_href.substring(0, edit_href.length-1)
+                var tb = document.createElement('td')
+                var deleteButton = document.createElement("a")
+                var editButton = document.createElement("a")
+                editButton.setAttribute('href', edit_href)
+                editButton.innerHTML = "edit"
+                deleteButton.setAttribute('href', href)
+                deleteButton.innerHTML = "delete"
+                tb.appendChild(editButton)
+                tb.appendChild(deleteButton)
+                tr.appendChild(tb)
+                table.appendChild(tr);
+            }
+        }
+        else{
+            document.write('<tr>');
+            document.write('<th>StockId</th>');
+            document.write('<th>Shares</th>');
+            document.write('<th>TradeDate</th>');
+            document.write('<th>TradePrice</th>');
+            document.write('</tr>');
+        }
+    </script>
+    </table>
+    <br>
+    <br>
+    <div class="form-container">
+        <button><a href="http://127.0.0.1:5000/addtransaction?portfolioname={{ portfolio }}">ADD TRANSACTION</a></button>
+    </div>
+    <div class="form-container">
+        <button><a href="http://127.0.0.1:5000/deleteportfolio?portfolioname={{ portfolio }}">DELETE PORTFOLIO</a></button>
+    </div>
+{% endblock %}
