@@ -1,0 +1,3 @@
+Week9
+
+The previous idea is to build layout of all the info and functionality into 1 page, but it looks sort of messy. This week, I designed a new workflow and layout, with 2-level navigation bar. One is about the stock info with basic, full screen, news and contact, while the other part is when you log in, there will be summary and transaction history of your own account, where you still will have link back to the stock. This definitely makes the interaction much easier.
