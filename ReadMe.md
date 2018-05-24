@@ -15,6 +15,6 @@ $ git clone git@github.com:isungchiang/COMP9900.git
 $ cd flaskImplementation
 $ export FLASK_APP=flaskImplementation.py
 $ flask run
-	* Serving Flask app "flaskImplementation"
-	* Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+  * Serving Flask app "flaskImplementation"
+  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 ```
