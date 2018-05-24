@@ -10,11 +10,16 @@ Required Libraries:
 json, urllib, config, render_template, request, url_for, redirect, session
 
 ## Setup
+
+Download from master branch as COMP9900-master.zip
+
 ```
-$ git clone git@github.com:isungchiang/COMP9900.git
-$ cd flaskImplementation
-$ export FLASK_APP=flaskImplementation.py
-$ flask run
-  * Serving Flask app "flaskImplementation"
-  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+$ unzip COMP9900-master.zip
+$ cd COMP9900-master/flaskImplementation/
+$ python2 flaskImplementation.py
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 232-029-348
 ```
+Visit http://127.0.0.1:5000/ in browser
