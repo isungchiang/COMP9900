@@ -64,6 +64,6 @@ Required Libraries: splinter
 2. After running, send it to remote api
  
 ### After uploading two files to remote, run stock_mark.py to get the stock marks into merged_json.csv
-1. run sum.py in the end, comment ‘merge_news()’ at bottom
+1. Run sum.py in the end, comment ‘merge_news()’ at bottom
  
 ### Update merged_json.csv to remote
