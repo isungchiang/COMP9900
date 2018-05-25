@@ -21,6 +21,7 @@ var itemRight={
 for (portfolioname in window.portfolios) {
     var portfolio = window.portfolios[portfolioname]
     if (portfolio.length > 0) {
+        count = true
         var stocks = {}
         for (var stock in portfolio){
             var stockid = portfolio[stock]['StockId']
@@ -72,12 +73,12 @@ for (portfolioname in window.portfolios) {
     }
 }
 // console.log(portfoliosInfo)
-// if (count == false){
-//     document.write('<h2>This portfolio is currently empty</h2>');
-// }
-if (portfolioInfo['Portfolio Info']['Total Asset']==0){
+if (count == false){
     document.write('<h2>This portfolio is currently empty</h2>');
 }
+// if (portfolioInfo['Portfolio Info']['Total Asset']==0){
+//     document.write('<h2>This portfolio is currently empty</h2>');
+// }
 
 option = {
     title: {
