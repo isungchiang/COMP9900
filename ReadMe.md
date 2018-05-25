@@ -87,4 +87,12 @@ Run python3 import.py (Please do not run with our url, or the current database w
 ### Publish Web Api:
 Required: Windows 10, Visual Studio 2015 or higher, .Net Frame module, Azure module, neo4j module
 
-File: 
+File: Neo4jGraphApi
+
+Usage:
+
+Open the project sln file by visual studio(VS is the best ide to publish something to Azure). Use NuGet to install required module. Set up the neo4j database address, password in Helper/GraphDriver.cs
+
+The main content of api is 3 cs file in Controllers
+
+Right click the project solution， choose publish. Use you Azure account to set up it. Follow the instruction from VS, it should be very easy.
