@@ -54,7 +54,7 @@ Required Libraries: splinter
 2. You can adjust SCROLL_TIMES and RUNNING_THREADS in the head of codes
  
 #### Run content _crawler.py to crawl the contents
-1. You should run in the same file
+1. You should run in the same file directory
 2. It will read the csv files downloaded by news crawler
 3. You can stop it any time and it can continue crawling in next time
 4. You can adjust RUNNING_THREADS in the head
