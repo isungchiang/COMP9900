@@ -1,0 +1,2347 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Neo4j.Driver</name>
+    </assembly>
+    <members>
+        <member name="T:Neo4j.Driver.Internal.AuthToken">
+            <summary>
+                A simple common token for authentication schemes that easily convert to an auth token map
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.ConcurrentSet`1.TryAdd(`0)">
+            <summary>
+            true if the item was added to the set successfully; false if the item already exists.
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.ConcurrentSet`1.TryRemove(`0)">
+            <summary>
+            true if the item was removed from the set successfully; false if the item does not exists.
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.ConnectionPool.TryIncrementPoolSize">
+            <summary>
+            Returns true if pool size is successfully increased, otherwise false.
+            The reason to failed to increase the pool size probably due to the pool is full already
+            </summary>
+            <returns>true if pool size is successfully increased, otherwise false.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.Connector.IConnection.Destroy">
+            <summary>
+            Close and release related resources
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.Connector.IConnection.DestroyAsync">
+            <summary>
+            Close and release related resources
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.Connector.IConnection.Close">
+            <summary>
+            Close connection
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.Internal.Connector.IConnection.IsOpen">
+            <summary>
+            Return true if the underlying socket connection is till open, otherwise false.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.Internal.Connector.IConnection.Server">
+            <summary>
+            The info of the server the connection connected to.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.Internal.Connector.PooledConnection.HasUnrecoverableError">
+            <summary>
+            Return true if unrecoverable error has been received on this connection, otherwise false.
+            The connection that has been marked as has unrecoverable errors will be eventally closed when returning back to the pool.
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.Connector.TcpSocketClient.Dispose">
+            <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
+        </member>
+        <member name="T:Neo4j.Driver.Internal.EncryptionManager">
+            <summary>
+            Manages how the driver will establish (encrypted) connections with the server.
+            </summary>
+        </member>
+        <member name="T:Neo4j.Driver.Internal.ISegment">
+            <summary>
+               
+            A <c>Segment</c> combines a relationship in a path with a start and end node that describe the traversal direction
+            for that relationship. This exists because the relationship has a direction between the two nodes that is
+            separate and potentially different from the direction of the path.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.Internal.ISegment.Start">
+            <summary>
+            Gets the start node underlying this path segment.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.Internal.ISegment.End">
+            <summary>
+            Gets the end node underlying this path segment.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.Internal.ISegment.Relationship">
+            <summary>
+            Gets the relationship underlying this path segment.
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.ByteExtensions.ToByteArray(System.String)">
+            <summary>
+            Takes the format: 00 00 00 and converts to a byte array.
+            </summary>
+            <param name="hex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.IO.PackStreamBitConverter.GetBytes(System.Byte)">
+            <summary>
+                Converts a byte to bytes.
+            </summary>
+            <param name="value">The byte value to convert.</param>
+            <returns>The specified byte value as an array of bytes.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.IO.PackStreamBitConverter.GetBytes(System.Int16)">
+            <summary>
+                Converts a shot (Int16) to bytes.
+            </summary>
+            <param name="value">The short (Int16) value to convert.</param>
+            <returns>The specified short (Int16) value as an array of bytes.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.IO.PackStreamBitConverter.GetBytes(System.UInt16)">
+            <summary>
+                Converts a shot (UInt16) to bytes.
+            </summary>
+            <param name="value">The short (UInt16) value to convert.</param>
+            <returns>The specified short (UInt16) value as an array of bytes.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.IO.PackStreamBitConverter.GetBytes(System.Int32)">
+            <summary>
+                Converts an int (Int32) to bytes.
+            </summary>
+            <param name="value">The int (Int32) value to convert.</param>
+            <returns>The specified int (Int32) value as an array of bytes.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.IO.PackStreamBitConverter.GetBytes(System.UInt32)">
+            <summary>
+                Converts an uint (UInt32) to bytes.
+            </summary>
+            <param name="value">The uint (UInt32) value to convert.</param>
+            <returns>The specified uint (UInt32) value as an array of bytes.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.IO.PackStreamBitConverter.GetBytes(System.Int64)">
+            <summary>
+                Converts an int (Int64) to bytes.
+            </summary>
+            <param name="value">The int (Int64) value to convert.</param>
+            <returns>The specified int (Int64) value as an array of bytes.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.IO.PackStreamBitConverter.GetBytes(System.Double)">
+            <summary>
+                Converts an int (double) to bytes.
+            </summary>
+            <param name="value">The int (double) value to convert.</param>
+            <returns>The specified int (double) value as an array of bytes.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.IO.PackStreamBitConverter.GetBytes(System.String)">
+            <summary>
+                Converts an string to bytes.
+            </summary>
+            <param name="value">The string value to convert.</param>
+            <returns>The specified string value as an array of bytes.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.IO.PackStreamBitConverter.ToInt16(System.Byte[])">
+            <summary>
+                Converts an byte array to a short.
+            </summary>
+            <param name="bytes">The byte array to convert.</param>
+            <returns>A short converted from the byte array.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.IO.PackStreamBitConverter.ToUInt16(System.Byte[])">
+            <summary>
+                Converts an byte array to a unsigned short.
+            </summary>
+            <param name="bytes">The byte array to convert.</param>
+            <returns>A unsigned short converted from the byte array.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.IO.PackStreamBitConverter.ToInt32(System.Byte[])">
+            <summary>
+                Converts an byte array to a int (Int32).
+            </summary>
+            <param name="bytes">The byte array to convert.</param>
+            <returns>A int (Int32) converted from the byte array.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.IO.PackStreamBitConverter.ToInt64(System.Byte[])">
+            <summary>
+                Converts an byte array to a int (Int64).
+            </summary>
+            <param name="bytes">The byte array to convert.</param>
+            <returns>A int (Int64) converted from the byte array.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.IO.PackStreamBitConverter.ToDouble(System.Byte[])">
+            <summary>
+                Converts an byte array to a int (double).
+            </summary>
+            <param name="bytes">The byte array to convert.</param>
+            <returns>A int (double) converted from the byte array.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.IO.PackStreamBitConverter.ToString(System.Byte[])">
+            <summary>
+                Converts an byte array of a UTF8 encoded string to a string
+            </summary>
+            <param name="bytes">The byte array to convert.</param>
+            <returns>A string converted from the byte array</returns>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.IO.PackStreamBitConverter.ToTargetEndian(System.Byte[])">
+            <summary>
+                Converts the bytes to big endian.
+            </summary>
+            <param name="bytes">The bytes to convert.</param>
+            <returns>The bytes converted to big endian.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.IO.PackStreamBitConverter.ToPlatformEndian(System.Byte[])">
+            <summary>
+                Converts the bytes to the platform endian type.
+            </summary>
+            <param name="bytes">The bytes to convert.</param>
+            <returns>The bytes converted to the platform endian type.</returns>
+        </member>
+        <member name="P:Neo4j.Driver.Internal.IPooledConnection.Id">
+            <summary>
+            An identifer of this connection for pooling
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.IPooledConnection.ClearConnection">
+            <summary>
+            Try to reset the connection to a clean state to prepare it for a new session.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.Internal.ITimer.ElapsedMilliseconds">
+            <summary>Gets the total elapsed time measured by the current instance, in milliseconds.</summary>
+            <returns>A read-only long integer representing the total number of milliseconds measured by the current instance.</returns>
+            <filterpriority>1</filterpriority>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.ITimer.Reset">
+            <summary>Stops time interval measurement and resets the elapsed time to zero.</summary>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.ITimer.Start">
+            <summary>Starts, or resumes, measuring elapsed time for an interval.</summary>
+        </member>
+        <member name="T:Neo4j.Driver.Internal.Result.IRecordSet">
+            <summary>
+            A record set represents a set of records where only forward enumeration is possible.
+            A record is considered consumed when it has been visited by enumeration. 
+            It will not be available by any other future enumerations.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.Internal.Result.IRecordSet.AtEnd">
+            <summary>
+            Returns true if this set contains no elements to consume.
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.Result.IRecordSet.Peek">
+            <summary>
+            Reterives the next <see cref="T:Neo4j.Driver.V1.IRecord"/>  without consuming it or returns null if the set is empty.
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.Result.IRecordSet.Records">
+            <summary>
+            Returns an IEnumerable of records.
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.Result.ResultBuilder.Summary">
+            <summary>
+            Buffer all records left unread into memory and return the summary
+            </summary>
+            <returns>The final summary</returns>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.Result.ResultBuilder.NextRecord">
+            <summary>
+            Return next record in the record stream if any, otherwise return null
+            </summary>
+            <returns>Next record in the record stream if any, otherwise return null</returns>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.Result.ResultCursorBuilder.SummaryAsync">
+            <summary>
+            Buffer all records left unread into memory and return the summary
+            </summary>
+            <returns>The final summary</returns>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.Result.ResultCursorBuilder.NextRecordAsync">
+            <summary>
+            Return next record in the record stream if any, otherwise return null
+            </summary>
+            <returns>Next record in the record stream if any, otherwise return null</returns>
+        </member>
+        <member name="T:Neo4j.Driver.Internal.Result.StatementResult">
+            <summary>
+            The result returned from the Neo4j instance
+            </summary>
+        </member>
+        <member name="T:Neo4j.Driver.Internal.Result.Notification">
+            <summary>
+            This is a notifcation
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.Routing.AddressSet`1.Add(`0)">
+            <summary>
+                Add one item into this set.
+            </summary>
+            <param name="item">The item to add</param>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.Routing.AddressSet`1.Add(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+                Adds several _items into this set.
+            </summary>
+            <param name="items">The _items to add</param>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.Routing.AddressSet`1.Remove(`0)">
+            <summary>
+                Remove one item from this set
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.Routing.AddressSet`1.Clear">
+            <summary>
+                Clean all the item inside this set
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.Internal.Routing.AddressSet`1.Snaphost">
+            <summary>
+                Get a snapshot of this set as list
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.Internal.Routing.AddressSet`1.Count">
+            <summary>
+                Number of items in this set
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.Internal.Routing.AddressSet`1.IsEmpty">
+            <summary>
+                Check if this set is empty
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.Routing.AddressSet`1.GetEnumerator">
+            <returns>The enumerator of the current snapshot of the set</returns>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.Routing.AddressSet`1.System#Collections#IEnumerable#GetEnumerator">
+            <returns>The eumerator of the current snapshot of the set</returns>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.Routing.ClusterDiscoveryManager.Rediscovery">
+            <remarks>Throws <see cref="T:Neo4j.Driver.V1.ProtocolException"/> if the discovery result is invalid.</remarks>
+            <remarks>Throws <see cref="T:Neo4j.Driver.V1.ServiceUnavailableException"/> if the no discovery procedure could be found in the server.</remarks>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.Routing.IAddressSet`1.Add(`0)">
+            <summary>
+            Add one item into this set.
+            </summary>
+            <param name="item">The item to add</param>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.Routing.IAddressSet`1.Add(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Adds several _items into this set.
+            </summary>
+            <param name="items">The _items to add</param>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.Routing.IAddressSet`1.Remove(`0)">
+            <summary>
+            Remove one item from this set
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.Routing.IAddressSet`1.Clear">
+            <summary>
+            Clean all the item inside this set
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.Internal.Routing.IAddressSet`1.Count">
+            <summary>
+            Not thread safe
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.Internal.Routing.IAddressSet`1.IsEmpty">
+            <summary>
+            Not thread safe
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.Session.OnResultConsumed">
+            <summary>
+             This method will be called back by <see cref="T:Neo4j.Driver.Internal.Result.ResultBuilder"/> after it consumed result
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.Session.OnTransactionDispose">
+            <summary>
+            Called back in <see cref="M:Neo4j.Driver.Internal.Transaction.Dispose(System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.Session.UpdateBookmark(Neo4j.Driver.Internal.Bookmark)">
+            <summary>
+            Only set the bookmark to a new value if the new value is not null
+            </summary>
+            <param name="bookmark">The new bookmark</param>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.Session.DisposeTransaction">
+            <summary>
+            Clean any transaction reference.
+            If transaction result is not commited, then rollback the transaction.
+            </summary>
+            <exception cref="T:Neo4j.Driver.V1.ClientException">If error when rollback the transaction</exception>
+        </member>
+        <member name="M:Neo4j.Driver.Internal.Session.DisposeSessionResult">
+            <summary>
+            Clean any session.run result reference.
+            If session.run result is not fully consumed, then pull full result into memory.
+            </summary>
+            <exception cref="T:Neo4j.Driver.V1.ClientException">If error when pulling result into memory</exception>
+        </member>
+        <member name="F:Neo4j.Driver.Internal.Transaction.State.Active">
+            The transaction is running with no explicit success or failure marked 
+        </member>
+        <member name="F:Neo4j.Driver.Internal.Transaction.State.MarkedSuccess">
+            Running, user marked for success, meaning it'll value committed 
+        </member>
+        <member name="F:Neo4j.Driver.Internal.Transaction.State.MarkedFailed">
+            User marked as failed, meaning it'll be rolled back. 
+        </member>
+        <member name="F:Neo4j.Driver.Internal.Transaction.State.Failed">
+            An error has occurred, transaction can no longer be used and no more messages will be sent for this
+            transaction.
+        </member>
+        <member name="F:Neo4j.Driver.Internal.Transaction.State.Succeeded">
+            This transaction has successfully committed 
+        </member>
+        <member name="F:Neo4j.Driver.Internal.Transaction.State.RolledBack">
+            This transaction has been rolled back 
+        </member>
+        <member name="T:Neo4j.Driver.V1.EncryptionLevel">
+            <summary>
+            Control the level of encryption to require.
+            </summary>
+        </member>
+        <member name="F:Neo4j.Driver.V1.EncryptionLevel.None">
+            <summary>
+            No encryption at all.
+            </summary>
+        </member>
+        <member name="F:Neo4j.Driver.V1.EncryptionLevel.Encrypted">
+            <summary>
+            Always encrypted.
+            </summary>
+        </member>
+        <member name="T:Neo4j.Driver.V1.TrustStrategy">
+            <summary>
+            Specify the trust strategy the driver adopts to trust a server.
+            </summary>
+        </member>
+        <member name="F:Neo4j.Driver.V1.TrustStrategy.TrustAllCertificates">
+            <summary>
+            Trust all servers.
+            </summary>
+        </member>
+        <member name="F:Neo4j.Driver.V1.TrustStrategy.TrustSystemCaSignedCertificates">
+            <summary>
+            Trust the servers whoes certifiacte is trusted by OS.
+            </summary>
+        </member>
+        <member name="T:Neo4j.Driver.V1.LoadBalancingStrategy">
+            <summary>
+            Control load balancing strategy used by the driver.
+            </summary>
+        </member>
+        <member name="F:Neo4j.Driver.V1.LoadBalancingStrategy.RoundRobin">
+            <summary>
+            For each next query or transaction driver select servers in round-robin fashion.
+            </summary>
+        </member>
+        <member name="F:Neo4j.Driver.V1.LoadBalancingStrategy.LeastConnected">
+            <summary>
+            For each next query or transaction driver selects the least connected server.
+            </summary>
+        </member>
+        <member name="T:Neo4j.Driver.V1.Config">
+            <summary>
+            Use this class to config the <see cref="T:Neo4j.Driver.V1.IDriver"/>.
+            </summary>
+        </member>
+        <member name="F:Neo4j.Driver.V1.Config.InfiniteInterval">
+            <summary>
+            This const defines the value of infinite interval in terms of configuration properties.
+            </summary>
+        </member>
+        <member name="F:Neo4j.Driver.V1.Config.Infinite">
+            <summary>
+            This const defines the value of infinite in terms of configuration properties.
+            </summary>
+        </member>
+        <member name="F:Neo4j.Driver.V1.Config.InfiniteMaxIdleSessionPoolSize">
+            <summary>
+            This const is deprecated.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.Config.DefaultConfig">
+            <summary>
+            Returns the default configuration for the <see cref="T:Neo4j.Driver.V1.IDriver"/>.
+            </summary>
+            <remarks>
+            The defaults are <br/>
+            <list type="bullet">
+            <item><see cref="P:Neo4j.Driver.V1.Config.EncryptionLevel"/> : <c><see cref="P:Neo4j.Driver.V1.Config.EncryptionLevel"/> Encrypted</c> </item>
+            <item><see cref="P:Neo4j.Driver.V1.Config.TrustStrategy"/> : <c><see cref="P:Neo4j.Driver.V1.Config.TrustStrategy"/>TrustAllCertificates</c> </item>
+            <item><see cref="P:Neo4j.Driver.V1.Config.ConnectionTimeout"/>: <c>5s</c> </item>
+            <item><see cref="P:Neo4j.Driver.V1.Config.SocketKeepAlive"/>: <c>true</c></item>
+            <item><see cref="P:Neo4j.Driver.V1.Config.Ipv6Enabled"/>: <c>true</c></item>
+            <br></br>
+            <item><see cref="P:Neo4j.Driver.V1.Config.MaxIdleConnectionPoolSize"/> : Same as <see cref="P:Neo4j.Driver.V1.Config.MaxConnectionPoolSize"/> if not explicitly set </item>
+            <item><see cref="P:Neo4j.Driver.V1.Config.MaxConnectionPoolSize"/> : <c>500</c> </item>
+            <item><see cref="P:Neo4j.Driver.V1.Config.ConnectionAcquisitionTimeout"/> : <c>1mins</c> </item>
+            <item><see cref="P:Neo4j.Driver.V1.Config.ConnectionIdleTimeout"/>: <see cref="F:Neo4j.Driver.V1.Config.InfiniteInterval"/></item>
+            <item><see cref="P:Neo4j.Driver.V1.Config.MaxConnectionLifetime"/>: <c>1h</c></item>
+            <br></br>
+            <item><see cref="P:Neo4j.Driver.V1.Config.Logger"/> : <c>DebugLogger</c> at <c><see cref="T:Neo4j.Driver.V1.LogLevel"/> Info</c> </item>
+            <item><see cref="P:Neo4j.Driver.V1.Config.MaxTransactionRetryTime"/>: <c>30s</c></item>
+            <item><see cref="P:Neo4j.Driver.V1.Config.LoadBalancingStrategy"/>: <c><see cref="P:Neo4j.Driver.V1.Config.LoadBalancingStrategy"/> LeastConnected</c> </item>
+            <br></br>
+            <item><see cref="P:Neo4j.Driver.V1.Config.DefaultReadBufferSize"/> : <c>32K</c> </item>
+            <item><see cref="P:Neo4j.Driver.V1.Config.MaxReadBufferSize"/> : <c>128K</c> </item>
+            <item><see cref="P:Neo4j.Driver.V1.Config.DefaultWriteBufferSize"/> : <c>16K</c> </item>
+            <item><see cref="P:Neo4j.Driver.V1.Config.MaxWriteBufferSize"/> : <c>64K</c> </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="P:Neo4j.Driver.V1.Config.Builder">
+            <summary>
+            Create an instance of <see cref="T:Neo4j.Driver.V1.IConfigBuilder"/> to build a <see cref="T:Neo4j.Driver.V1.Config"/>.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.Config.EncryptionLevel">
+            <summary>
+            Gets or sets the use of encryption for all the connections created by the <see cref="T:Neo4j.Driver.V1.IDriver"/>.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.Config.TrustStrategy">
+            <summary>
+            Gets or sets how to determine the authenticity of an encryption certificate provided by the Neo4j instance we are connecting to.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.Config.Logger">
+            <summary>
+            Gets or sets the <see cref="T:Neo4j.Driver.V1.ILogger"/> instance to be used by the <see cref="T:Neo4j.Driver.V1.ISession"/>s.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.Config.MaxTransactionRetryTime">
+            <summary>
+            Gets or sets the maximum transaction rety timeout.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.Config.MaxIdleConnectionPoolSize">
+            <summary>
+            Gets or sets the max idle connection pool size. If the value of this is not set,
+            then it will default to be the same as <see cref="P:Neo4j.Driver.V1.Config.MaxConnectionPoolSize"/>
+            </summary>
+            <remarks> 
+            The max idle connection pool size represents the maximum number of idle connections buffered by the driver. 
+            An idle connection is a connection that has already been connected to the database instance and doesn't need to re-initialize.
+            Setting this value to <see cref="F:Neo4j.Driver.V1.Config.Infinite"/> results in the idle pool size to be asigned the same value as <see cref="P:Neo4j.Driver.V1.Config.MaxConnectionPoolSize"/>.
+            </remarks>
+            <remarks>Also see <see cref="P:Neo4j.Driver.V1.Config.MaxConnectionPoolSize"/></remarks>
+        </member>
+        <member name="P:Neo4j.Driver.V1.Config.MaxIdleSessionPoolSize">
+            <summary>
+            This property is deprecated. Use <see cref="P:Neo4j.Driver.V1.Config.MaxIdleConnectionPoolSize"/> instead.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.Config.MaxConnectionPoolSize">
+            <summary>
+            Gets or sets the max connection pool size.
+            </summary>
+            <remarks>
+            The max connection pool size specifies the allowed maximum number of idle and current in-use connections by the driver.
+            a.k.a. ConnectionPoolSize = IdleConnectionPoolSize + InUseConnectionSize.
+            When a driver reaches its allowed maximum connection pool size, no new connections can be established.
+            Instead all threads that require a new connection have to wait until a connection is available to reclaim.
+            See <see cref="P:Neo4j.Driver.V1.Config.ConnectionAcquisitionTimeout"/>for the maximum waiting time to acquire an idle connection from the pool.
+            Setting this value to <see cref="F:Neo4j.Driver.V1.Config.Infinite"/> will result in an infinite pool.
+            </remarks>
+            <remarks>Also see <see cref="P:Neo4j.Driver.V1.Config.MaxIdleConnectionPoolSize"/></remarks>
+        </member>
+        <member name="P:Neo4j.Driver.V1.Config.ConnectionAcquisitionTimeout">
+            <summary>
+            Gets or sets the maximum waiting time to either acquire an idle connection from the pool when connection pool is full
+            or create a new connection when pool is not full.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.Config.ConnectionTimeout">
+            <summary>
+            Gets or sets the connection timeout when establishing a connection with a server.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.Config.SocketKeepAlive">
+            <summary>
+            Gets or sets the socket keep alive option.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.Config.ConnectionIdleTimeout">
+            <summary>
+            Gets or sets the idle timeout on pooled connections.
+            A connection that has been idled in connection pool for longer than the given timeout is stale and will be closed once it is seen.
+            Use <see cref="F:Neo4j.Driver.V1.Config.InfiniteInterval"/> to disable idle time checking.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.Config.MaxConnectionLifetime">
+            <summary>
+            Gets or sets the maximum connection lifetime on pooled connecitons.
+            A connection that has been created for longer than the given time will be closed once it is seen.
+            Use <see cref="F:Neo4j.Driver.V1.Config.InfiniteInterval"/> to disable connection lifetime checking.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.Config.Ipv6Enabled">
+            <summary>
+            Gets or sets the connections to support ipv6 addresses.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.Config.LoadBalancingStrategy">
+            <summary>
+            Gets or sets the load balancing strategy for the routing driver. Direct driver will ignore this setting.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.Config.DriverStatisticsCollector">
+            <summary>
+            Gets or sets the statistics collector to which the statistics inside the driver could be published.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.Config.DefaultReadBufferSize">
+            <summary>
+            Gets or sets the default read buffer size which the driver allocates for its internal buffers.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.Config.MaxReadBufferSize">
+            <summary>
+            Gets or sets the size when internal read buffers reach, will be released for garbage collection. 
+            If reading large records (nodes, relationships or paths) and experiencing too much garbage collection consider increasing this size
+            to a reasonable amount depending on your data.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.Config.DefaultWriteBufferSize">
+            <summary>
+            Gets or sets the default write buffer size which the driver allocates for its internal buffers.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.Config.MaxWriteBufferSize">
+            <summary>
+            Gets or sets the size when internal write buffers reach, will be released for garbage collection. 
+            If writing large values and experiencing too much garbage collection consider increasing this size
+            to a reasonable amount depending on your data.
+            </summary>
+        </member>
+        <member name="T:Neo4j.Driver.V1.IConfigBuilder">
+            <summary>
+            Provides a way to generate a <see cref="T:Neo4j.Driver.V1.Config"/> instance fluently.
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IConfigBuilder.ToConfig">
+            <summary>
+            Builds the <see cref="T:Neo4j.Driver.V1.Config"/> instance based on the previously set values.
+            </summary>
+            <remarks>>
+            If no value was set for a property the defaults specified in <see cref="P:Neo4j.Driver.V1.Config.DefaultConfig"/> will be used.
+            </remarks>
+            <returns>A <see cref="T:Neo4j.Driver.V1.Config"/> instance.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IConfigBuilder.WithEncryptionLevel(Neo4j.Driver.V1.EncryptionLevel)">
+            <summary>
+            Sets the <see cref="T:Neo4j.Driver.V1.Config"/> to use TLS if <paramref name="level"/> is <c>true</c>.
+            </summary>
+            <param name="level"><see cref="F:Neo4j.Driver.V1.EncryptionLevel.Encrypted"/> enables TLS for the connection, <see cref="F:Neo4j.Driver.V1.EncryptionLevel.None"/> otherwise. See <see cref="T:Neo4j.Driver.V1.EncryptionLevel"/> for more info</param>.
+            <returns>An <see cref="T:Neo4j.Driver.V1.IConfigBuilder"/> instance for further configuration options.</returns>
+            <remarks>Must call <see cref="M:Neo4j.Driver.V1.IConfigBuilder.ToConfig"/> to generate a <see cref="T:Neo4j.Driver.V1.Config"/> instance.</remarks>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IConfigBuilder.WithTrustStrategy(Neo4j.Driver.V1.TrustStrategy)">
+            <summary>
+            Sets <see cref="T:Neo4j.Driver.V1.Config"/> to use the verification <paramref name="strategy"/> when establishing TLS connections.
+            The <paramref name="strategy"/> will not take effects if <see cref="P:Neo4j.Driver.V1.Config.EncryptionLevel"/> decides to use no TLS encryption on the connections.
+            </summary>
+            <param name="strategy">See <see cref="T:Neo4j.Driver.V1.TrustStrategy"/> for available strategies.</param>
+            <returns></returns>
+            <remarks>Must call <see cref="M:Neo4j.Driver.V1.IConfigBuilder.ToConfig"/> to generate a <see cref="T:Neo4j.Driver.V1.Config"/> instance.</remarks>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IConfigBuilder.WithLogger(Neo4j.Driver.V1.ILogger)">
+            <summary>
+            Sets the <see cref="T:Neo4j.Driver.V1.Config"/> to use a given <see cref="T:Neo4j.Driver.V1.ILogger"/> instance.
+            </summary>
+            <param name="logger">The <see cref="T:Neo4j.Driver.V1.ILogger"/> instance to use, if <c>null</c> no logging will occur.</param>
+            <returns>An <see cref="T:Neo4j.Driver.V1.IConfigBuilder"/> instance for further configuration options.</returns>
+            <remarks>Must call <see cref="M:Neo4j.Driver.V1.IConfigBuilder.ToConfig"/> to generate a <see cref="T:Neo4j.Driver.V1.Config"/> instance.</remarks>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IConfigBuilder.WithMaxIdleSessionPoolSize(System.Int32)">
+            <summary>
+            This method is deprecated. Use <see cref="M:Neo4j.Driver.V1.IConfigBuilder.WithMaxIdleConnectionPoolSize(System.Int32)"/> instead.
+            </summary>
+            <param name="size"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IConfigBuilder.WithMaxIdleConnectionPoolSize(System.Int32)">
+            <summary>
+            Sets the size of the idle connection pool.
+            </summary>
+            <param name="size">The size of the <see cref="P:Neo4j.Driver.V1.Config.MaxIdleConnectionPoolSize"/>,
+            set to 0 will disable connection pooling.</param>.
+            <returns>An <see cref="T:Neo4j.Driver.V1.IConfigBuilder"/> instance for further configuration options.</returns>
+            <remarks>Must call <see cref="M:Neo4j.Driver.V1.IConfigBuilder.ToConfig"/> to generate a <see cref="T:Neo4j.Driver.V1.Config"/> instance.</remarks>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IConfigBuilder.WithMaxConnectionPoolSize(System.Int32)">
+            <summary>
+            Sets the size of the connection pool.
+            </summary>
+            <param name="size">The size of the <see cref="P:Neo4j.Driver.V1.Config.MaxConnectionPoolSize"/></param>
+            <returns>An <see cref="T:Neo4j.Driver.V1.IConfigBuilder"/> instance for further configuration options.</returns>
+            <remarks>Must call <see cref="M:Neo4j.Driver.V1.IConfigBuilder.ToConfig"/> to generate a <see cref="T:Neo4j.Driver.V1.Config"/> instance.</remarks>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IConfigBuilder.WithConnectionAcquisitionTimeout(System.TimeSpan)">
+            <summary>
+            Sets the maximum connection acquisition timeout for waiting for a connection to become available in idle connection pool
+            when <see cref="P:Neo4j.Driver.V1.Config.MaxConnectionPoolSize"/> is reached.
+            </summary>
+            <param name="timeSpan">The connection acquisition timeout.</param>
+            <returns>An <see cref="T:Neo4j.Driver.V1.IConfigBuilder"/> instance for further configuration options.</returns>
+            <remarks>Must call <see cref="M:Neo4j.Driver.V1.IConfigBuilder.ToConfig"/> to generate a <see cref="T:Neo4j.Driver.V1.Config"/> instance.</remarks>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IConfigBuilder.WithConnectionTimeout(System.TimeSpan)">
+            <summary>
+            Specify socket connection timeout.
+            A <see cref="T:System.TimeSpan"/> that represents the number of milliseconds to wait, or <see cref="F:Neo4j.Driver.V1.Config.InfiniteInterval"/> to wait indefinitely.
+            </summary>
+            <param name="timeSpan">Represents the number of milliseconds to wait or <see cref="F:Neo4j.Driver.V1.Config.InfiniteInterval"/> to wait indefinitely.</param>
+            <returns>An <see cref="T:Neo4j.Driver.V1.IConfigBuilder"/> instance for further configuration options.</returns>
+            <remarks>Must call <see cref="M:Neo4j.Driver.V1.IConfigBuilder.ToConfig"/> to generate a <see cref="T:Neo4j.Driver.V1.Config"/> instance.</remarks>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IConfigBuilder.WithSocketKeepAliveEnabled(System.Boolean)">
+            <summary>
+            Enable socket to send keep alive pings on TCP level to prevent pooled socket connections from getting killed after leaving client idle for a long time.
+            The interval of keep alive pings are set via your OS system.
+            </summary>
+            <param name="enable"></param>
+            <returns>An <see cref="T:Neo4j.Driver.V1.IConfigBuilder"/> instance for further configuration options.</returns>
+            <remarks>Must call <see cref="M:Neo4j.Driver.V1.IConfigBuilder.ToConfig"/> to generate a <see cref="T:Neo4j.Driver.V1.Config"/> instance.</remarks>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IConfigBuilder.WithMaxTransactionRetryTime(System.TimeSpan)">
+            <summary>
+            Specify the maximum time transactions are allowed to retry via <see cref="M:Neo4j.Driver.V1.ISession.ReadTransaction(System.Action{Neo4j.Driver.V1.ITransaction})"/> and <see cref="M:Neo4j.Driver.V1.ISession.WriteTransaction(System.Action{Neo4j.Driver.V1.ITransaction})"/>.
+            These methods will retry the given unit of work on <see cref="T:Neo4j.Driver.V1.SessionExpiredException"/>, <see cref="T:Neo4j.Driver.V1.TransientException"/> and <see cref="T:Neo4j.Driver.V1.ServiceUnavailableException"/>
+            with exponential backoff using initial delay of 1 second.
+            Default value is 30 seconds.
+            </summary>
+            <param name="time">Specify the maximum retry time. </param>
+            <returns>An <see cref="T:Neo4j.Driver.V1.IConfigBuilder"/> instance for further configuration options.</returns>
+            <remarks>Must call <see cref="M:Neo4j.Driver.V1.IConfigBuilder.ToConfig"/> to generate a <see cref="T:Neo4j.Driver.V1.Config"/> instance.</remarks>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IConfigBuilder.WithConnectionIdleTimeout(System.TimeSpan)">
+            <summary>
+            Specify the connection idle timeout.
+            The connection that has been idled in pool for longer than specified timeout will not be reused but closed.
+            </summary>
+            <param name="timeSpan">The max timespan that a connection can be reused after has been idle for.</param>
+            <returns>An <see cref="T:Neo4j.Driver.V1.IConfigBuilder"/> instance for further configuration options.</returns>
+            <remarks>Must call <see cref="M:Neo4j.Driver.V1.IConfigBuilder.ToConfig"/> to generate a <see cref="T:Neo4j.Driver.V1.Config"/> instance.</remarks>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IConfigBuilder.WithMaxConnectionLifetime(System.TimeSpan)">
+            <summary>
+            Specify the maximum connection life time.
+            The connection that has been created for longer than specified time will not be reused but closed.
+            </summary>
+            <param name="timeSpan">The max timespan that a connection can be reused after has been created for.</param>
+            <returns>An <see cref="T:Neo4j.Driver.V1.IConfigBuilder"/> instance for further configuration options.</returns>
+            <remarks>Must call <see cref="M:Neo4j.Driver.V1.IConfigBuilder.ToConfig"/> to generate a <see cref="T:Neo4j.Driver.V1.Config"/> instance.</remarks>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IConfigBuilder.WithIpv6Enabled(System.Boolean)">
+            <summary>
+            Setting this option to true will enable ipv6 on socket connections.
+            </summary>
+            <param name="enable">true to enable ipv6, false to only support ipv4 addresses.</param>
+            <returns>An <see cref="T:Neo4j.Driver.V1.IConfigBuilder"/> instance for further configuration options.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IConfigBuilder.WithLoadBalancingStrategy(Neo4j.Driver.V1.LoadBalancingStrategy)">
+            <summary>
+            Provide an alternative load balancing strategy for the routing driver to use. By default routing
+            driver uses <see cref="F:Neo4j.Driver.V1.LoadBalancingStrategy.LeastConnected"/>. Direct driver will ignore this setting.
+            </summary>
+            <param name="loadBalancingStrategy">The strategy to use.</param>
+            <returns>An <see cref="T:Neo4j.Driver.V1.IConfigBuilder"/> instance for further configuration options.</returns>
+            <remarks>We are experimenting with different strategies. This could be removed in the next minor version.</remarks>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IConfigBuilder.WithDefaultReadBufferSize(System.Int32)">
+            <summary>
+            Specify the default read buffer size which the driver allocates for its internal buffers.
+            </summary>
+            <param name="defaultReadBufferSize">the buffer size</param>
+            <returns>An <see cref="T:Neo4j.Driver.V1.IConfigBuilder"/> instance for further configuration options.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IConfigBuilder.WithMaxReadBufferSize(System.Int32)">
+            <summary>
+            Specify the size when internal read buffers reach, will be released for garbage collection. 
+            </summary>
+            <param name="maxReadBufferSize">the buffer size</param>
+            <returns>An <see cref="T:Neo4j.Driver.V1.IConfigBuilder"/> instance for further configuration options.</returns>
+            <remarks>If reading large records (nodes, relationships or paths) and experiencing too much garbage collection 
+            consider increasing this size to a reasonable amount depending on your data.</remarks>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IConfigBuilder.WithDefaultWriteBufferSize(System.Int32)">
+            <summary>
+            Specify the default write buffer size which the driver allocates for its internal buffers.
+            </summary>
+            <param name="defaultWriteBufferSize">the buffer size</param>
+            <returns>An <see cref="T:Neo4j.Driver.V1.IConfigBuilder"/> instance for further configuration options.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IConfigBuilder.WithMaxWriteBufferSize(System.Int32)">
+            <summary>
+            Specify the size when internal write buffers reach, will be released for garbage collection. 
+            </summary>
+            <param name="maxWriteBufferSize">the buffer size</param>
+            <returns>An <see cref="T:Neo4j.Driver.V1.IConfigBuilder"/> instance for further configuration options.</returns>
+            <remarks>If writing large values and experiencing too much garbage collection 
+            consider increasing this size to a reasonable amount depending on your data.</remarks>
+        </member>
+        <member name="T:Neo4j.Driver.V1.GraphDatabase">
+            <summary>
+                Creates <see cref="T:Neo4j.Driver.V1.IDriver" /> instances, optionally letting you
+                configure them.
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.V1.GraphDatabase.Driver(System.String)">
+            <summary>
+                Returns a driver for a Neo4j instance with default configuration settings.
+            </summary>
+            <param name="uri">
+                The URI to the Neo4j instance. Should be in the form
+                <c>protocol://&lt;server location&gt;:&lt;port&gt;</c>.
+                If <c>port</c> is not supplied the default of <c>7687</c> will
+                be used.
+                The supported protocols in URI could either be <c>bolt</c> or <c>bolt+routing</c>.
+                The protocol <c>bolt</c> should be used when creating a driver connecting to the Neo4j instance directly.
+                The protocol <c>bolt+routing</c> should be used when creating a driver with built-in routing.
+            </param>
+            <returns>A new <see cref="T:Neo4j.Driver.V1.IDriver" /> instance specified by the <paramref name="uri" />.</returns>
+            <remarks>Ensure you provide the protocol for the <paramref name="uri" />.</remarks>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="uri" /> is <c>null</c>.</exception>
+        </member>
+        <member name="M:Neo4j.Driver.V1.GraphDatabase.Driver(System.Uri)">
+            <summary>
+                Returns a driver for a Neo4j instance with default configuration settings.
+            </summary>
+            <param name="uri">
+                The URI to the Neo4j instance. Should be in the form
+                <c>protocol://&lt;server location&gt;:&lt;port&gt;</c>.
+                If <c>port</c> is not supplied the default of <c>7687</c> will
+                be used.
+                The supported protocols in URI could either be <c>bolt</c> or <c>bolt+routing</c>.
+                The protocol <c>bolt</c> should be used when creating a driver connecting to the Neo4j instance directly.
+                The protocol <c>bolt+routing</c> should be used when creating a driver with built-in routing.
+            </param>
+            <returns>A new <see cref="T:Neo4j.Driver.V1.IDriver" /> instance specified by the <paramref name="uri" />.</returns>
+            <remarks>Ensure you provide the protocol for the <paramref name="uri" />.</remarks>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="uri" /> is <c>null</c>.</exception>
+        </member>
+        <member name="M:Neo4j.Driver.V1.GraphDatabase.Driver(System.String,Neo4j.Driver.V1.Config)">
+            <summary>
+                Returns a driver for a Neo4j instance with custom configuration.
+            </summary>
+            <param name="uri">
+                The URI to the Neo4j instance. Should be in the form
+                <c>protocol://&lt;server location&gt;:&lt;port&gt;</c>.
+                If <c>port</c> is not supplied the default of <c>7687</c> will
+                be used.
+                The supported protocols in URI could either be <c>bolt</c> or <c>bolt+routing</c>.
+                The protocol <c>bolt</c> should be used when creating a driver connecting to the Neo4j instance directly.
+                The protocol <c>bolt+routing</c> should be used when creating a driver with built-in routing.
+            </param>
+            <param name="config">
+                Configuration for the driver instance to use, if <c>null</c> <see cref="P:Neo4j.Driver.V1.Config.DefaultConfig" />
+                is used.
+            </param>
+            <returns>A new <see cref="T:Neo4j.Driver.V1.IDriver" /> instance specified by the <paramref name="uri" />.</returns>
+            <remarks>Ensure you provide the protocol for the <paramref name="uri" />.</remarks>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="uri" /> is <c>null</c>.</exception>
+        </member>
+        <member name="M:Neo4j.Driver.V1.GraphDatabase.Driver(System.Uri,Neo4j.Driver.V1.Config)">
+            <summary>
+                Returns a driver for a Neo4j instance with custom configuration.
+            </summary>
+            <param name="uri">
+                The URI to the Neo4j instance. Should be in the form
+                <c>protocol://&lt;server location&gt;:&lt;port&gt;</c>.
+                If <c>port</c> is not supplied the default of <c>7687</c> will
+                be used.
+                The supported protocols in URI could either be <c>bolt</c> or <c>bolt+routing</c>.
+                The protocol <c>bolt</c> should be used when creating a driver connecting to the Neo4j instance directly.
+                The protocol <c>bolt+routing</c> should be used when creating a driver with built-in routing.
+            </param>
+            <param name="config">
+                Configuration for the driver instance to use, if <c>null</c> <see cref="P:Neo4j.Driver.V1.Config.DefaultConfig" />
+                is used.
+            </param>
+            <returns>A new <see cref="T:Neo4j.Driver.V1.IDriver" /> instance specified by the <paramref name="uri" />.</returns>
+            <remarks>Ensure you provide the protocol for the <paramref name="uri" />.</remarks>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="uri" /> is <c>null</c>.</exception>
+        </member>
+        <member name="M:Neo4j.Driver.V1.GraphDatabase.Driver(System.String,Neo4j.Driver.V1.IAuthToken)">
+            <summary>
+                Returns a driver for a Neo4j instance with default configuration settings.
+            </summary>
+            <param name="uri">
+                The URI to the Neo4j instance. Should be in the form
+                <c>protocol://&lt;server location&gt;:&lt;port&gt;</c>.
+                If <c>port</c> is not supplied the default of <c>7687</c> will
+                be used.
+                The supported protocols in URI could either be <c>bolt</c> or <c>bolt+routing</c>.
+                The protocol <c>bolt</c> should be used when creating a driver connecting to the Neo4j instance directly.
+                The protocol <c>bolt+routing</c> should be used when creating a driver with built-in routing.
+            </param>
+            <param name="authToken">Authentication to use, <see cref="T:Neo4j.Driver.V1.AuthTokens" />.</param>
+            <returns>A new <see cref="T:Neo4j.Driver.V1.IDriver" /> instance specified by the <paramref name="uri" />.</returns>
+            <remarks>Ensure you provide the protocol for the <paramref name="uri" />.</remarks>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="uri" /> is <c>null</c>.</exception>
+        </member>
+        <member name="M:Neo4j.Driver.V1.GraphDatabase.Driver(System.Uri,Neo4j.Driver.V1.IAuthToken)">
+            <summary>
+                Returns a driver for a Neo4j instance with default configuration settings.
+            </summary>
+            <param name="uri">
+                The URI to the Neo4j instance. Should be in the form
+                <c>protocol://&lt;server location&gt;:&lt;port&gt;</c>.
+                If <c>port</c> is not supplied the default of <c>7687</c> will
+                be used.
+                The supported protocols in URI could either be <c>bolt</c> or <c>bolt+routing</c>.
+                The protocol <c>bolt</c> should be used when creating a driver connecting to the Neo4j instance directly.
+                The protocol <c>bolt+routing</c> should be used when creating a driver with built-in routing.
+            </param>
+            <param name="authToken">Authentication to use, <see cref="T:Neo4j.Driver.V1.AuthTokens" />.</param>
+            <returns>A new <see cref="T:Neo4j.Driver.V1.IDriver" /> instance specified by the <paramref name="uri" />.</returns>
+            <remarks>Ensure you provide the protocol for the <paramref name="uri" />.</remarks>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="uri" /> is <c>null</c>.</exception>
+        </member>
+        <member name="M:Neo4j.Driver.V1.GraphDatabase.Driver(System.String,Neo4j.Driver.V1.IAuthToken,Neo4j.Driver.V1.Config)">
+            <summary>
+                Returns a driver for a Neo4j instance with custom configuration.
+            </summary>
+            <param name="uri">
+                The URI to the Neo4j instance. Should be in the form
+                <c>protocol://&lt;server location&gt;:&lt;port&gt;</c>.
+                If <c>port</c> is not supplied the default of <c>7687</c> will
+                be used.
+                The supported protocols in URI could either be <c>bolt</c> or <c>bolt+routing</c>.
+                The protocol <c>bolt</c> should be used when creating a driver connecting to the Neo4j instance directly.
+                The protocol <c>bolt+routing</c> should be used when creating a driver with built-in routing.
+            </param>
+            <param name="authToken">Authentication to use, <see cref="T:Neo4j.Driver.V1.AuthTokens" />.</param>
+            <param name="config">
+                Configuration for the driver instance to use, if <c>null</c> <see cref="P:Neo4j.Driver.V1.Config.DefaultConfig" />
+                is used.
+            </param>
+            <returns>A new driver to the database instance specified by the <paramref name="uri"/>.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.GraphDatabase.Driver(System.Uri,Neo4j.Driver.V1.IAuthToken,Neo4j.Driver.V1.Config)">
+            <summary>
+                Returns a driver for a Neo4j instance with custom configuration.
+            </summary>
+            <param name="uri">        
+                The URI to the Neo4j instance. Should be in the form
+                <c>bolt://&lt;server location&gt;:&lt;port&gt;</c>. If <c>port</c> is not supplied the default of <c>7687</c> will
+                be used.</param>
+            <param name="authToken">Authentication to use, <see cref="T:Neo4j.Driver.V1.AuthTokens" />.</param>
+            <param name="config">
+                Configuration for the driver instance to use, if <c>null</c> <see cref="P:Neo4j.Driver.V1.Config.DefaultConfig" />
+                is used.
+            </param>
+            <returns>A new driver to the database instance specified by the <paramref name="uri"/>.</returns>
+        </member>
+        <member name="T:Neo4j.Driver.V1.IAuthToken">
+            <summary>
+                An authentication token is used to authenticate with a Neo4j instance. 
+                It usually contains a <c>Principal</c>, for instance a username, and one or more <c>Credentials</c>, for instance a password.
+                See <see cref="T:Neo4j.Driver.V1.AuthTokens" /> for available types of <see cref="T:Neo4j.Driver.V1.IAuthToken"/>s.
+            </summary>
+            <remarks>
+                <see cref="M:Neo4j.Driver.V1.GraphDatabase.Driver(System.String,Neo4j.Driver.V1.IAuthToken,Neo4j.Driver.V1.Config)" />
+            </remarks>
+        </member>
+        <member name="T:Neo4j.Driver.V1.AuthTokens">
+            <summary>
+                This provides methods to create <see cref="T:Neo4j.Driver.V1.IAuthToken"/>s for various authentication schemes supported by this driver. 
+                The scheme used must be also supported by the Neo4j instance you are connecting to.
+            </summary>
+            <remarks>
+                <see cref="M:Neo4j.Driver.V1.GraphDatabase.Driver(System.String,Neo4j.Driver.V1.IAuthToken,Neo4j.Driver.V1.Config)" />
+            </remarks>
+        </member>
+        <member name="P:Neo4j.Driver.V1.AuthTokens.None">
+            <summary>
+                Gets an authentication token that can be used to connect to Neo4j instances with auth disabled.
+                This will only work if authentication is disabled on the Neo4j Instance we are connecting to.
+            </summary>
+            <remarks>
+                <see cref="M:Neo4j.Driver.V1.GraphDatabase.Driver(System.String,Neo4j.Driver.V1.IAuthToken,Neo4j.Driver.V1.Config)" />
+            </remarks>
+        </member>
+        <member name="M:Neo4j.Driver.V1.AuthTokens.Basic(System.String,System.String)">
+            <summary>
+                The basic authentication scheme, using a username and a password.
+            </summary>
+            <param name="username">This is the "principal", identifying who this token represents.</param>
+            <param name="password">This is the "credential", proving the identity of the user.</param>
+            <returns>An authentication token that can be used to connect to Neo4j.</returns>
+            <remarks>
+                <see cref="M:Neo4j.Driver.V1.GraphDatabase.Driver(System.String,Neo4j.Driver.V1.IAuthToken,Neo4j.Driver.V1.Config)" />
+            </remarks>
+        </member>
+        <member name="M:Neo4j.Driver.V1.AuthTokens.Basic(System.String,System.String,System.String)">
+            <summary>
+                The basic authentication scheme, using a username and a password.
+            </summary>
+            <param name="username">This is the "principal", identifying who this token represents.</param>
+            <param name="password">This is the "credential", proving the identity of the user.</param>
+            <param name="realm">This is the "realm", specifies the authentication provider. If none is given, default to be decided by the server. </param>
+            <returns>An authentication token that can be used to connect to Neo4j.</returns>
+            <remarks>
+                <see cref="M:Neo4j.Driver.V1.GraphDatabase.Driver(System.String,Neo4j.Driver.V1.IAuthToken,Neo4j.Driver.V1.Config)" />
+            </remarks>
+        </member>
+        <member name="M:Neo4j.Driver.V1.AuthTokens.Kerberos(System.String)">
+            <summary>
+            The kerberos authentication scheme, using a base64 encoded ticket. 
+            </summary>
+            <param name="base64EncodedTicket">A base64 encoded service ticket.</param>
+            <returns>an authentication token that can be used to connect to Neo4j.</returns>
+            <remarks>
+                <see cref="M:Neo4j.Driver.V1.GraphDatabase.Driver(System.String,Neo4j.Driver.V1.IAuthToken,Neo4j.Driver.V1.Config)" />
+            </remarks>
+        </member>
+        <member name="M:Neo4j.Driver.V1.AuthTokens.Custom(System.String,System.String,System.String,System.String)">
+            <summary>
+                Gets an authentication token that can be used to connect to Neo4j instances with auth disabled.
+                This will only work if authentication is disabled on the Neo4j Instance we are connecting to.
+            </summary>
+            <remarks>
+                <see cref="M:Neo4j.Driver.V1.GraphDatabase.Driver(System.String,Neo4j.Driver.V1.IAuthToken,Neo4j.Driver.V1.Config)" />
+            </remarks>
+            <param name="principal">This is used to identify who this token represents.</param>
+            <param name="credentials">This is credentials authenticating the principal.</param>
+            <param name="realm">This is the "realm", specifies the authentication provider.</param>
+            <param name="scheme">This is the authentication scheme, specifying what kind of authentication that should be used.</param>
+            <returns>An authentication token that can be used to connect to Neo4j.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.AuthTokens.Custom(System.String,System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+                Gets an authentication token that can be used to connect to Neo4j instances with auth disabled.
+                This will only work if authentication is disabled on the Neo4j Instance we are connecting to.
+            </summary>
+            <remarks>
+                <see cref="M:Neo4j.Driver.V1.GraphDatabase.Driver(System.String,Neo4j.Driver.V1.IAuthToken,Neo4j.Driver.V1.Config)" />
+            </remarks>
+            <param name="principal">This is used to identify who this token represents.</param>
+            <param name="credentials">This is credentials authenticating the principal.</param>
+            <param name="realm">This is the "realm", specifies the authentication provider.</param>
+            <param name="scheme">This is the authentication scheme, specifying what kind of authentication that should be used.</param>
+            <param name="parameters">Extra parameters to be sent along the authentication provider. If none is given, then no parameter will be added extral.</param>
+            <returns>An authentication token that can be used to connect to Neo4j.</returns>
+        </member>
+        <member name="T:Neo4j.Driver.V1.ICounters">
+            <summary>
+            Represents the changes to the database made as a result of a statement being run.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.ICounters.ContainsUpdates">
+            <summary>
+            Gets whether there were any updates at all, eg. any of the counters are greater than 0.
+            </summary>
+            <value>Returns <c>true</c> if the statement made any updates, <c>false</c> otherwise.</value>
+        </member>
+        <member name="P:Neo4j.Driver.V1.ICounters.NodesCreated">
+            <summary>
+            Gets the number of nodes created.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.ICounters.NodesDeleted">
+            <summary>
+            Gets the number of nodes deleted.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.ICounters.RelationshipsCreated">
+            <summary>
+            Gets the number of relationships created.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.ICounters.RelationshipsDeleted">
+            <summary>
+            Gets the number of relationships deleted.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.ICounters.PropertiesSet">
+            <summary>
+            Gets the number of properties (on both nodes and relationships) set.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.ICounters.LabelsAdded">
+            <summary>
+            Gets the number of labels added to nodes.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.ICounters.LabelsRemoved">
+            <summary>
+            Gets the number of labels removed from nodes.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.ICounters.IndexesAdded">
+            <summary>
+            Gets the number of indexes added to the schema.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.ICounters.IndexesRemoved">
+            <summary>
+            Gets the number of indexes removed from the schema.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.ICounters.ConstraintsAdded">
+            <summary>
+            Gets the number of constraints added to the schema.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.ICounters.ConstraintsRemoved">
+            <summary>
+            Gets the number of constraints removed from the schema.
+            </summary>
+        </member>
+        <member name="T:Neo4j.Driver.V1.IDriver">
+            <summary>
+                The <see cref="T:Neo4j.Driver.V1.IDriver"/> instance maintains the connections with a Neo4j database, providing an access point via the
+                <see cref="T:Neo4j.Driver.V1.ISession" /> method.
+            </summary>
+            <remarks>
+                The Driver maintains a session pool buffering the <see cref="T:Neo4j.Driver.V1.ISession" />s created by the user. 
+                The size of the buffer can be configured by the <see cref="P:Neo4j.Driver.V1.Config.MaxIdleConnectionPoolSize" /> property on the <see cref="T:Neo4j.Driver.V1.Config" /> when creating the Driver.
+            </remarks>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IDriver.Uri">
+            <summary>
+                Gets the <see cref="P:Neo4j.Driver.V1.IDriver.Uri" /> of the Neo4j database.
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IDriver.Session">
+            <summary>
+            Obtain a session with the default access mode <see cref="F:Neo4j.Driver.V1.AccessMode.Write"/>.
+            </summary>
+            <returns>An <see cref="T:Neo4j.Driver.V1.ISession"/> that could be used to execute statements.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IDriver.Session(Neo4j.Driver.V1.AccessMode)">
+            <summary>
+            Obtain a session with the default <see cref="T:Neo4j.Driver.V1.AccessMode"/>.
+            </summary>
+            <param name="defaultMode">The default access mode of the session. 
+            If no access mode is specified when using the statement running methods inside this session,
+            the statement will be executed in connections satisfying the default access mode.</param>
+            <returns>An <see cref="T:Neo4j.Driver.V1.ISession"/> that could be used to execute statements.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IDriver.Session(System.String)">
+            <summary>
+            Obtain a session with the default <see cref="F:Neo4j.Driver.V1.AccessMode.Write"/> and start bookmark.
+            </summary>
+            <param name="bookmark">A reference to a previous transaction. If the bookmark is provided,
+            then the server hosting is at least as up-to-date as the transaction referenced by the supplied bookmark.
+            Specify a bookmark if the statement excuted inside this session need to be chained after statements from other sessions.</param>
+            <returns>An <see cref="T:Neo4j.Driver.V1.ISession"/> that could be used to execute statements.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IDriver.Session(Neo4j.Driver.V1.AccessMode,System.String)">
+            <summary>
+            Obtain a session with the default <see cref="T:Neo4j.Driver.V1.AccessMode"/> and start bookmark.
+            </summary>
+            <param name="defaultMode">The default access mode of the session. 
+            If no access mode is specified when using the statement running methods inside this session,
+            the statement will be executed in connections satisfying the default access mode.</param>
+            <param name="bookmark">A reference to a previous transaction. If the bookmark is provided,
+            then the server hosting is at least as up-to-date as the transaction referenced by the supplied bookmark.
+            Specify a bookmark if the statement excuted inside this session need to be chained after statements from other sessions.</param>
+            <returns>An <see cref="T:Neo4j.Driver.V1.ISession"/> that could be used to execute statements.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IDriver.Session(Neo4j.Driver.V1.AccessMode,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Obtain a session with the default <see cref="T:Neo4j.Driver.V1.AccessMode"/> and a series of start bookmars.
+            </summary>
+            <param name="defaultMode">The default access mode of the session.
+            If no access mode is specified when using the statement running methods inside this session,
+            the statement will be executed in connections satisfying the default access mode.</param>
+            <param name="bookmarks">References to previous transactions. If the bookmarks are provided,
+            then the server hosting is at least as up-to-date as the transaction referenced by the supplied bookmarks.
+            Specify bookmarks if the statement excuted inside this session need to be chained after statements from other sessions.</param>
+            <returns>An <see cref="T:Neo4j.Driver.V1.ISession"/> that could be used to execute statements.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IDriver.Session(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Obtain a session with the default <see cref="F:Neo4j.Driver.V1.AccessMode.Write"/> access mode and a series of start bookmars.
+            </summary>
+            <param name="bookmarks">References to previous transactions. If the bookmarks are provided,
+            then the server hosting is at least as up-to-date as the transaction referenced by the supplied bookmarks.
+            Specify bookmarks if the statement excuted inside this session need to be chained after statements from other sessions.</param>
+            <returns>An <see cref="T:Neo4j.Driver.V1.ISession"/> that could be used to execute statements.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IDriver.Close">
+            <summary>
+            Releases all resources (connection pools, connections, etc) associated with this IDriver instance.
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IDriver.CloseAsync">
+            <summary>
+            Asynchronously releases all resources (connection pools, connections, etc) associated with this IDriver instance.
+            </summary>
+        </member>
+        <member name="T:Neo4j.Driver.V1.AccessMode">
+            <summary>
+            Used by driver to route a cypher statement to a write server or a read server.
+            </summary>
+        </member>
+        <member name="F:Neo4j.Driver.V1.AccessMode.Read">
+            <summary>
+            Requires cypher statememt to be carried out on a read server
+            </summary>
+        </member>
+        <member name="F:Neo4j.Driver.V1.AccessMode.Write">
+            <summary>
+            Requires cypher statement to be executed on a write server
+            </summary>
+        </member>
+        <member name="T:Neo4j.Driver.V1.IEntity">
+            <summary>
+            Represents an <c>Entity</c> in the Neo4j graph database. An <c>Entity</c> could be a <c>Node</c> or a <c>Relationship</c>.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IEntity.Item(System.String)">
+            <summary>
+            Gets the value that has the specified key in <see cref="P:Neo4j.Driver.V1.IEntity.Properties"/>.
+            </summary>
+            <param name="key">The key.</param>
+            <returns>The value specified by the given key in <see cref="P:Neo4j.Driver.V1.IEntity.Properties"/>.</returns>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IEntity.Properties">
+            <summary>
+            Gets the properties of the entity.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IEntity.Id">
+            <summary>
+            Get the identity as a <see cref="T:System.Int64"/> number.
+            </summary>
+        </member>
+        <member name="T:Neo4j.Driver.V1.INode">
+            <summary>
+            Represents a <c>Node</c> in the Neo4j graph database.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.INode.Labels">
+            <summary>
+            Gets the lables of the node.
+            </summary>
+        </member>
+        <member name="T:Neo4j.Driver.V1.IRelationship">
+            <summary>
+            Represents a <c>Relationship</c> in the Neo4j graph database.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IRelationship.Type">
+            <summary>
+            Gets the type of the relationship.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IRelationship.StartNodeId">
+            <summary>
+            Gets the id of the start node of the relationship.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IRelationship.EndNodeId">
+            <summary>
+            Gets the id of the end node of the relationship.
+            </summary>
+        </member>
+        <member name="T:Neo4j.Driver.V1.IPath">
+            <summary>
+                A <c>Path</c> is a directed sequence of relationships between two nodes. This generally
+                represents a <em>traversal</em> or <em>walk</em> through a graph and maintains a direction separate
+                from that of any relationships traversed.
+                It is allowed to be of size 0, meaning there are no relationships in it. In this case,
+                it contains only a single node which is both the start and the end of the path.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IPath.Start">
+            <summary>
+            Gets the start <see cref="T:Neo4j.Driver.V1.INode"/> in the path.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IPath.End">
+            <summary>
+            Gets the end <see cref="T:Neo4j.Driver.V1.INode"/> in the path.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IPath.Nodes">
+            <summary>
+            Gets all the nodes in the path.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IPath.Relationships">
+            <summary>
+            Gets all the relationships in the path.
+            </summary>
+        </member>
+        <member name="T:Neo4j.Driver.V1.LogLevel">
+            <summary>
+            The logging levels that could be used by a logger.
+            </summary>
+        </member>
+        <member name="F:Neo4j.Driver.V1.LogLevel.None">
+            <summary>
+            Set the log level to <see cref="F:Neo4j.Driver.V1.LogLevel.None"/> to avoid any logging from the driver.
+            </summary>
+        </member>
+        <member name="F:Neo4j.Driver.V1.LogLevel.Error">
+            <summary>
+            Set the log level to <see cref="F:Neo4j.Driver.V1.LogLevel.Error"/> to only see errors logged by the driver.
+            </summary>
+        </member>
+        <member name="F:Neo4j.Driver.V1.LogLevel.Info">
+            <summary>
+            Set the log level to <see cref="F:Neo4j.Driver.V1.LogLevel.Info"/> to see all errors and information logged by the driver.
+            </summary>
+        </member>
+        <member name="F:Neo4j.Driver.V1.LogLevel.Debug">
+            <summary>
+            When setting log level to <see cref="F:Neo4j.Driver.V1.LogLevel.Debug"/>, besides all logging recorded by <see cref="F:Neo4j.Driver.V1.LogLevel.Error"/> and <see cref="F:Neo4j.Driver.V1.LogLevel.Info"/>,
+            all bolt messages sent between driver and server are also logged in plain text.
+            </summary>
+        </member>
+        <member name="F:Neo4j.Driver.V1.LogLevel.Trace">
+            <summary>
+            When setting log level to <see cref="F:Neo4j.Driver.V1.LogLevel.Trace"/>, besides all logging recorded by <see cref="F:Neo4j.Driver.V1.LogLevel.Error"/>, <see cref="F:Neo4j.Driver.V1.LogLevel.Info"/> and <see cref="F:Neo4j.Driver.V1.LogLevel.Debug"/>,
+            all bolt messages in hex sent between driver and server are also logged in plain text.
+            </summary>
+        </member>
+        <member name="T:Neo4j.Driver.V1.ILogger">
+            <summary>
+            The logger used by this driver. 
+            This interface is expected to be implemented by users to access the logs generated by the driver.
+            </summary>
+            <remarks>
+            Set the logger that you want to use via <see cref="T:Neo4j.Driver.V1.Config"/>.
+            If no logger is explicitly set, then a default debug logger would be used <see cref="P:Neo4j.Driver.V1.Config.DefaultConfig"/></remarks>
+        </member>
+        <member name="M:Neo4j.Driver.V1.ILogger.Error(System.String,System.Exception,System.Object[])">
+            <summary>Log a message at <see cref="F:Neo4j.Driver.V1.LogLevel.Error"/> level.</summary>
+            <param name="message">The error message.</param>
+            <param name="cause">The cause of the error.</param>
+            <param name="restOfMessage">Any <paramref name="restOfMessage"/> parts of the message.</param>
+        </member>
+        <member name="M:Neo4j.Driver.V1.ILogger.Info(System.String,System.Object[])">
+            <summary>Log a message at <see cref="F:Neo4j.Driver.V1.LogLevel.Info"/> level.</summary>
+            <param name="message">The message.</param>
+            <param name="restOfMessage">Any <paramref name="restOfMessage"/> parts of the message.</param>
+        </member>
+        <member name="M:Neo4j.Driver.V1.ILogger.Debug(System.String,System.Object[])">
+            <summary>Log a message at <see cref="F:Neo4j.Driver.V1.LogLevel.Debug"/> level.</summary>
+            <param name="message">The message.</param>
+            <param name="restOfMessage">Any <paramref name="restOfMessage"/> parts of the message, including (but not limited to) Sent Messages and Received Messages.</param>
+        </member>
+        <member name="M:Neo4j.Driver.V1.ILogger.Trace(System.String,System.Object[])">
+            <summary>Log a message at <see cref="F:Neo4j.Driver.V1.LogLevel.Trace"/> level</summary>
+            <param name="message">The message.</param>
+            <param name="restOfMessage">
+            Any <paramref name="restOfMessage"/> parts of the message, 
+            including (but not limited to) byte buffer to send/receive data over the connection, 
+            offset in byte buffer, the length of bytes in the buffer.
+            </param>
+        </member>
+        <member name="P:Neo4j.Driver.V1.ILogger.Level">
+            <summary>
+            Gets and sets the level of this <see cref="T:Neo4j.Driver.V1.ILogger"/>
+            </summary>
+        </member>
+        <member name="T:Neo4j.Driver.V1.INotification">
+            <summary>
+            Representation for notifications found when executing a statement.
+            
+            A notification can be visualized in a client pinpointing problems or other information about the statement.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.INotification.Code">
+             <summary>
+            Gets a notification code for the discovered issue.
+             </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.INotification.Title">
+             <summary>
+            Gets a short summary of the notification.
+             </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.INotification.Description">
+             <summary>
+            Gets a longer description of the notification.
+             </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.INotification.Position">
+             <summary>
+            Gets the position in the statement where this notification points to.
+            Not all notifications have a unique position to point to and in that case the position would be set to all 0s.
+             </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.INotification.Severity">
+            <summary>
+            Gets The severity level of the notification.
+            </summary>
+        </member>
+        <member name="T:Neo4j.Driver.V1.IInputPosition">
+            <summary>
+            An input position refers to a specific character in a statement.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IInputPosition.Offset">
+            <summary>
+            Gets the character offset referred to by this position; offset numbers start at 0.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IInputPosition.Line">
+            <summary>
+            Gets the line number referred to by the position; line numbers start at 1.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IInputPosition.Column">
+            <summary>
+            Gets the column number referred to by the position; column numbers start at 1.
+            </summary>
+        </member>
+        <member name="T:Neo4j.Driver.V1.IPlan">
+             <summary>
+             This describes the <c>Plan</c> that the database planner produced and used (or will use) to execute your statement.
+             This can be extremely helpful in understanding what a statement is doing, and how to optimize it. For more
+             details, see the Neo4j Manual.
+            
+             The plan for the statement is a tree of plans - each sub-tree containing zero or more child plans. The statement
+             starts with the root plan. Each sub-plan is of a specific <see cref="P:Neo4j.Driver.V1.IPlan.OperatorType"/>, which describes
+             what that part of the plan does - for instance, perform an index lookup or filter results. The Neo4j Manual contains
+             a reference of the available operator types, and these may differ across Neo4j versions.
+            
+             </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IPlan.OperatorType">
+            <summary>
+            Gets the operation this plan is performing.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IPlan.Arguments">
+            <summary>
+            Gets the arguments for the <see cref="P:Neo4j.Driver.V1.IPlan.OperatorType"/> used.
+            
+            Many <see cref="P:Neo4j.Driver.V1.IPlan.OperatorType"/> have arguments defining their specific behavior. This map contains
+            those arguments.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IPlan.Identifiers">
+             <summary>
+             Gets a list of identifiers used by this plan.
+             
+             Identifiers used by this part of the plan. These can be both identifiers introduce by you, or automatically
+             generated identifiers.
+            
+             </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IPlan.Children">
+            <summary>
+            Gets zero or more child plans.
+            
+            A plan is a tree, where each child is another plan. The children are where
+            this part of the plan gets its input records - unless this is an <see cref="P:Neo4j.Driver.V1.IPlan.OperatorType"/> that introduces
+            new records on its own.
+            </summary>
+        </member>
+        <member name="T:Neo4j.Driver.V1.IProfiledPlan">
+            <summary>
+            This is the same as a regular <see cref="T:Neo4j.Driver.V1.IPlan"/> - except this plan has been executed, meaning it also contains detailed information about how much work each
+            step of the plan incurred on the database.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IProfiledPlan.DbHits">
+            <summary>
+            Gets the number of times this part of the plan touched the underlying data stores
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IProfiledPlan.Records">
+            <summary>
+            Gets the number of records this part of the plan produced
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IProfiledPlan.Children">
+            <summary>
+            Gets zero or more child profiled plans.
+            
+            A profiled plan is a tree, where each child is another profiled plan. The children are where
+            this part of the plan gets its input records - unless this is an <see cref="P:Neo4j.Driver.V1.IPlan.OperatorType"/> that introduces
+            new records on its own.
+            </summary>
+        </member>
+        <member name="T:Neo4j.Driver.V1.IRecord">
+            <summary>
+             A record contains ordered key and value pairs
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IRecord.Item(System.Int32)">
+            <summary>
+            Gets the value at the given index.
+            </summary>
+            <param name="index">The index</param>
+            <returns>The value specified with the given index.</returns>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IRecord.Item(System.String)">
+            <summary>
+            Gets the value specified by the given key.
+            </summary>
+            <param name="key">The key</param>
+            <returns>the value spcified with the given key.</returns>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IRecord.Values">
+            <summary>
+            Gets the key and value pairs in a <see cref="T:System.Collections.Generic.IReadOnlyDictionary`2"/>.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IRecord.Keys">
+            <summary>
+            Gets the keys in a <see cref="T:System.Collections.Generic.IReadOnlyList`1"/>.
+            </summary>
+        </member>
+        <member name="T:Neo4j.Driver.V1.StatementType">
+            <summary>
+            The type of a statement.
+            </summary>
+        </member>
+        <member name="F:Neo4j.Driver.V1.StatementType.Unknown">
+            <summary>
+            The statement type is unknown
+            </summary>
+        </member>
+        <member name="F:Neo4j.Driver.V1.StatementType.ReadOnly">
+            <summary>
+            The statement is a readonly statement
+            </summary>
+        </member>
+        <member name="F:Neo4j.Driver.V1.StatementType.ReadWrite">
+            <summary>
+            The statement is a readwrite statement
+            </summary>
+        </member>
+        <member name="F:Neo4j.Driver.V1.StatementType.WriteOnly">
+            <summary>
+            The statement is a writeonly statement
+            </summary>
+        </member>
+        <member name="F:Neo4j.Driver.V1.StatementType.SchemaWrite">
+            <summary>
+            The statement is a schemawrite statement
+            </summary>
+        </member>
+        <member name="T:Neo4j.Driver.V1.IResultSummary">
+             <summary>
+             
+             The result summary of running a statement. The result summary interface can be used to investigate
+             details about the result, like the type of query run, how many and which kinds of updates have been executed,
+             and query plan and profiling information if available.
+            
+             The result summary is only available after all result records have been consumed.
+            
+             Keeping the result summary around does not influence the lifecycle of any associated session and/or transaction.
+             </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IResultSummary.Statement">
+            <summary>
+            Gets statement that has been executed.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IResultSummary.Counters">
+            <summary>
+            Gets statistics counts for the statement.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IResultSummary.StatementType">
+            <summary>
+            Gets type of statement that has been executed.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IResultSummary.HasPlan">
+            <summary>
+            Gets if the result contained a statement plan or not, i.e. is the summary of a Cypher <c>PROFILE</c> or <c>EXPLAIN</c> statement.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IResultSummary.HasProfile">
+            <summary>
+            Gets if the result contained profiling information or not, i.e. is the summary of a Cypher <c>PROFILE</c> statement.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IResultSummary.Plan">
+            <summary>
+            Gets statement plan for the executed statement if available, otherwise null.
+            </summary>
+            <remarks>
+            This describes how the database will execute your statement.
+            </remarks>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IResultSummary.Profile">
+            <summary>
+            Gets profiled statement plan for the executed statement if available, otherwise null.
+            </summary>
+            <remarks>
+            This describes how the database did execute your statement.
+            
+            If the statement you executed (<see cref="P:Neo4j.Driver.V1.IResultSummary.HasProfile"/> was profiled), the statement plan will contain detailed
+            information about what each step of the plan did. That more in-depth version of the statement plan becomes
+            available here.
+            
+            </remarks>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IResultSummary.Notifications">
+            <summary>
+            Gets a list of notifications produced while executing the statement. The list will be empty if no
+            notifications produced while executing the statement.
+            </summary>
+            <remarks>
+            A list of notifications that might arise when executing the statement.
+            Notifications can be warnings about problematic statements or other valuable information that can be presented
+            in a client.
+            
+            Unlike failures or errors, notifications do not affect the execution of a statement.
+            
+            </remarks>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IResultSummary.ResultAvailableAfter">
+            <summary>
+            The time it took the server to make the result available for consumption.
+            Default to <c>-00:00:00.001</c> if the server version does not support this field in summary.
+            </summary>
+            <remarks>
+            Field introduced in Neo4j 3.1.
+            </remarks>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IResultSummary.ResultConsumedAfter">
+            <summary>
+            The time it took the server to consume the result.
+            Default to <c>-00:00:00.001</c> if the server version does not support this field in summary.
+            </summary>
+            <remarks>
+            Field introduced in Neo4j 3.1.
+            </remarks>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IResultSummary.Server">
+            <summary>
+            Get some basic information of the server where the statement is carried out
+            </summary>
+        </member>
+        <member name="T:Neo4j.Driver.V1.IServerInfo">
+            <summary>
+            Provides basic information of the server where the cypher statement was executed.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IServerInfo.Address">
+            <summary>
+            Get the address of the server
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IServerInfo.Version">
+            <summary>
+            Get the version of Neo4j running at the server.
+            </summary>
+            <remarks>
+            Introduced since Neo4j 3.1. Default to <c>null</c> if not supported by server
+            </remarks>
+        </member>
+        <member name="T:Neo4j.Driver.V1.ISession">
+             <summary>
+             A live session with a Neo4j instance.
+            
+             Sessions serve two purposes. For one, they are an optimization. By keeping state on the database side, we can
+             avoid re-transmitting certain metadata over and over.
+            
+             Sessions also serve a role in transaction isolation and ordering semantics. Neo4j requires
+             "sticky sessions", meaning all requests within one session must always go to the same Neo4j instance.
+            
+             Session objects are not thread safe, if you want to run concurrent operations against the database,
+             simply create multiple session objects.
+             </summary>
+        </member>
+        <member name="M:Neo4j.Driver.V1.ISession.BeginTransaction">
+             <summary>
+             Begin a new transaction in this session. A session can have at most one transaction running at a time, if you
+             want to run multiple concurrent transactions, you should use multiple concurrent sessions.
+             
+             All data operations in Neo4j are transactional. However, for convenience we provide a <see cref="M:Neo4j.Driver.V1.IStatementRunner.Run(Neo4j.Driver.V1.Statement)"/>
+             method directly on this session interface as well. When you use that method, your statement automatically gets
+             wrapped in a transaction.
+            
+             If you want to run multiple statements in the same transaction, you should wrap them in a transaction using this
+             method.
+            
+             </summary>
+             <returns>A new transaction.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.ISession.BeginTransaction(System.String)">
+            <summary>
+            This method is deprecated.
+            </summary>
+            <param name="bookmark"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.ISession.BeginTransactionAsync">
+             <summary>
+             Asynchronously begin a new transaction in this session. A session can have at most one transaction running at a time, if you
+             want to run multiple concurrent transactions, you should use multiple concurrent sessions.
+             
+             All data operations in Neo4j are transactional. However, for convenience we provide a <see cref="M:Neo4j.Driver.V1.IStatementRunner.RunAsync(Neo4j.Driver.V1.Statement)"/>
+             method directly on this session interface as well. When you use that method, your statement automatically gets
+             wrapped in a transaction.
+            
+             If you want to run multiple statements in the same transaction, you should wrap them in a transaction using this
+             method.
+            
+             </summary>
+             <returns>A task of a new transaction.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.ISession.ReadTransaction``1(System.Func{Neo4j.Driver.V1.ITransaction,``0})">
+            <summary>
+            Execute given unit of work in a  <see cref="F:Neo4j.Driver.V1.AccessMode.Read"/> transaction.
+            </summary>
+            <typeparam name="T">The return type of the given unit of work.</typeparam>
+            <param name="work">The <see cref="T:System.Func`1"/> to be applied to a new read transaction.</param>
+            <returns>A result as returned by the given unit of work.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.ISession.ReadTransactionAsync``1(System.Func{Neo4j.Driver.V1.ITransaction,System.Threading.Tasks.Task{``0}})">
+            <summary>
+            Asynchronously execute given unit of work in a <see cref="F:Neo4j.Driver.V1.AccessMode.Read"/> transaction.
+            </summary>
+            <typeparam name="T">The return type of the given unit of work.</typeparam>
+            <param name="work">The <see cref="T:System.Func`2"/> to be applied to a new read transaction.</param>
+            <returns>A task of a result as returned by the given unit of work.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.ISession.ReadTransaction(System.Action{Neo4j.Driver.V1.ITransaction})">
+            <summary>
+            Execute given unit of work in a  <see cref="F:Neo4j.Driver.V1.AccessMode.Read"/> transaction.
+            </summary>
+            <param name="work">The <see cref="T:System.Action`1"/> to be applied to a new read transaction.</param>
+        </member>
+        <member name="M:Neo4j.Driver.V1.ISession.ReadTransactionAsync(System.Func{Neo4j.Driver.V1.ITransaction,System.Threading.Tasks.Task})">
+            <summary>
+            Asynchronously execute given unit of work in a <see cref="F:Neo4j.Driver.V1.AccessMode.Read"/> transaction.
+            </summary>
+            <param name="work">The <see cref="T:System.Func`2"/> to be applied to a new read transaction.</param>
+            <returns>A task representing the completion of the transactional read operation enclosing the given unit of work.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.ISession.WriteTransaction``1(System.Func{Neo4j.Driver.V1.ITransaction,``0})">
+            <summary>
+             Execute given unit of work in a  <see cref="F:Neo4j.Driver.V1.AccessMode.Write"/> transaction.
+            </summary>
+            <typeparam name="T">The return type of the given unit of work.</typeparam>
+            <param name="work">The <see cref="T:System.Func`1"/> to be applied to a new write transaction.</param>
+            <returns>A result as returned by the given unit of work.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.ISession.WriteTransactionAsync``1(System.Func{Neo4j.Driver.V1.ITransaction,System.Threading.Tasks.Task{``0}})">
+            <summary>
+             Asynchronously execute given unit of work in a <see cref="F:Neo4j.Driver.V1.AccessMode.Write"/> transaction.
+            </summary>
+            <typeparam name="T">The return type of the given unit of work.</typeparam>
+            <param name="work">The <see cref="T:System.Func`2"/> to be applied to a new write transaction.</param>
+            <returns>A task of a result as returned by the given unit of work.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.ISession.WriteTransaction(System.Action{Neo4j.Driver.V1.ITransaction})">
+            <summary>
+             Execute given unit of work in a  <see cref="F:Neo4j.Driver.V1.AccessMode.Write"/> transaction.
+            </summary>
+            <param name="work">The <see cref="T:System.Action`1"/> to be applied to a new write transaction.</param>
+        </member>
+        <member name="M:Neo4j.Driver.V1.ISession.WriteTransactionAsync(System.Func{Neo4j.Driver.V1.ITransaction,System.Threading.Tasks.Task})">
+            <summary>
+             Asynchronously execute given unit of work in a <see cref="F:Neo4j.Driver.V1.AccessMode.Write"/> transaction.
+            </summary>
+            <param name="work">The <see cref="T:System.Func`2"/> to be applied to a new write transaction.</param>
+            <returns>A task representing the completion of the transactional write operation enclosing the given unit of work.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.ISession.CloseAsync">
+            <summary>
+            Close all resources used in this Session. If any transaction is left open in this session without commit or rollback,
+            then this method will rollback the transaction.
+            </summary>
+            <returns>A task representing the completion of successfully closed the session.</returns>
+        </member>
+        <member name="P:Neo4j.Driver.V1.ISession.LastBookmark">
+            <summary>
+            Gets the bookmark received following the last successfully completed <see cref="T:Neo4j.Driver.V1.ITransaction"/>.
+            If no bookmark was received or if this transaction was rolled back, the bookmark value will not be changed.
+            </summary>
+        </member>
+        <member name="T:Neo4j.Driver.V1.IStatementRunner">
+            <summary>
+             Common interface for components that can execute Neo4j statements.
+            </summary>
+            <remarks>
+            <see cref="T:Neo4j.Driver.V1.ISession"/> and <see cref="T:Neo4j.Driver.V1.ITransaction"/>
+            </remarks>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IStatementRunner.Run(System.String)">
+             <summary>
+             
+             Run a statement and return a result stream.
+            
+             This method accepts a String representing a Cypher statement which will be 
+             compiled into a query object that can be used to efficiently execute this
+             statement multiple times. 
+             </summary>
+             <param name="statement">A Cypher statement.</param>
+             <returns>A stream of result values and associated metadata.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IStatementRunner.RunAsync(System.String)">
+             <summary>
+             
+             Asynchronously run a statement and return a task of result stream.
+            
+             This method accepts a String representing a Cypher statement which will be 
+             compiled into a query object that can be used to efficiently execute this
+             statement multiple times. This method optionally accepts a set of parameters
+             which will be injected into the query object statement by Neo4j. 
+            
+             </summary>
+             <param name="statement">A Cypher statement.</param>
+             <returns>A task of a stream of result values and associated metadata.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IStatementRunner.Run(System.String,System.Object)">
+            <summary>
+            Execute a statement and return a result stream.
+            </summary>
+            <param name="statement">A Cypher statement.</param>
+            <param name="parameters">A parameter dictonary which is made of prop.Name=prop.Value pairs would be created.</param>
+            <returns>A stream of result values and associated metadata.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IStatementRunner.RunAsync(System.String,System.Object)">
+            <summary>
+            Asynchronously execute a statement and return a task of result stream.
+            </summary>
+            <param name="statement">A Cypher statement.</param>
+            <param name="parameters">A parameter dictonary which is made of prop.Name=prop.Value pairs would be created.</param>
+            <returns>A task of a stream of result values and associated metadata.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IStatementRunner.Run(System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+             <summary>
+             
+             Run a statement and return a result stream.
+            
+             This method accepts a String representing a Cypher statement which will be 
+             compiled into a query object that can be used to efficiently execute this
+             statement multiple times. This method optionally accepts a set of parameters
+             which will be injected into the query object statement by Neo4j. 
+            
+             </summary>
+             <param name="statement">A Cypher statement.</param>
+             <param name="parameters">Input parameters for the statement.</param>
+             <returns>A stream of result values and associated metadata.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IStatementRunner.RunAsync(System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+             <summary>
+             
+             Asynchronously run a statement and return a task of result stream.
+            
+             This method accepts a String representing a Cypher statement which will be 
+             compiled into a query object that can be used to efficiently execute this
+             statement multiple times. This method optionally accepts a set of parameters
+             which will be injected into the query object statement by Neo4j. 
+            
+             </summary>
+             <param name="statement">A Cypher statement.</param>
+             <param name="parameters">Input parameters for the statement.</param>
+             <returns>A task of a stream of result values and associated metadata.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IStatementRunner.Run(Neo4j.Driver.V1.Statement)">
+             <summary>
+            
+             Execute a statement and return a result stream.
+            
+             </summary>
+             <param name="statement">A Cypher statement, <see cref="T:Neo4j.Driver.V1.Statement"/>.</param>
+             <returns>A stream of result values and associated metadata.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IStatementRunner.RunAsync(Neo4j.Driver.V1.Statement)">
+             <summary>
+            
+             Asynchronously execute a statement and return a task of result stream.
+            
+             </summary>
+             <param name="statement">A Cypher statement, <see cref="T:Neo4j.Driver.V1.Statement"/>.</param>
+             <returns>A task of a stream of result values and associated metadata.</returns>
+        </member>
+        <member name="T:Neo4j.Driver.V1.ITransaction">
+             <summary>
+             Represents a transaction in the Neo4j database.
+            
+             This interface may seem surprising in that it does not have explicit <c>Commit</c> or <c>Rollback</c> methods.
+             It is designed to minimize the complexity of the code you need to write to use transactions in a safe way, ensuring
+             that transactions are properly rolled back even if there is an exception while the transaction is running.
+             </summary>
+        </member>
+        <member name="M:Neo4j.Driver.V1.ITransaction.Success">
+            <summary>
+            Mark this transaction as successful. You must call this method before calling <see cref="M:System.IDisposable.Dispose"/> to have your
+            transaction committed.
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.V1.ITransaction.Failure">
+             <summary>
+             Mark this transaction as failed. Calling <see cref="M:System.IDisposable.Dispose"/> will roll back the transaction.
+            
+             Marking a transaction as failed is irreversable and guarantees that subsequent calls to <see cref="M:Neo4j.Driver.V1.ITransaction.Success"/> will not change it's status.
+             </summary>
+        </member>
+        <member name="M:Neo4j.Driver.V1.ITransaction.CommitAsync">
+            <summary>
+            Asynchronously commit this transaction.
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.V1.ITransaction.RollbackAsync">
+            <summary>
+            Asynchronously roll back this transaction.
+            </summary>
+        </member>
+        <member name="T:Neo4j.Driver.V1.IStatementResult">
+            <summary>
+            Provides access to the result as an <see cref="T:System.Collections.Generic.IEnumerable`1"/> of <see cref="T:Neo4j.Driver.V1.IRecord"/>s.
+            The records in the result is lazily retrived and could only be visited once.
+            </summary>
+            <remarks> Calling <see cref="M:System.Linq.Enumerable.ToList``1(System.Collections.Generic.IEnumerable{``0})"/> will enumerate the entire stream.</remarks>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IStatementResult.Keys">
+            <summary>
+            Gets the keys in the result.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IStatementResult.Summary">
+             <summary>
+             Gets the <see cref="T:Neo4j.Driver.V1.IResultSummary"/> after streaming the whole records to the client.
+             If the records in the result are not fully consumed,
+             then calling this method will force to pull all remaining records into buffer to yield the summary.
+            
+             If you want to obtain the summary but discard the records, use <see cref="M:Neo4j.Driver.V1.IStatementResult.Consume"/> instead.
+            
+             If all records in the records stream are already consumed, then this method will return the summary directly.
+             </summary>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IStatementResult.Peek">
+            <summary>
+            Investigate the next upcoming record without changing the current position in the result.
+            </summary>
+            <returns>The next record, or null if there is no next record.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IStatementResult.Consume">
+            <summary>
+            Consume the entire result, yielding a summary of it.
+            Calling this method exhausts the result.
+            </summary>
+            <returns>A summary for running the statement.</returns>
+            <remarks>This method could be called multiple times. If no more record could be consumed then calling this method has the same effect of calling <see cref="P:Neo4j.Driver.V1.IStatementResult.Summary"/>.</remarks>
+        </member>
+        <member name="T:Neo4j.Driver.V1.IStatementResultCursor">
+            <summary>
+            Provides access to the result as an asynchronous stream of <see cref="T:Neo4j.Driver.V1.IRecord"/>s.
+            The records in the result is lazily retrived and could only be visited once in a sequential order.
+            </summary>
+            <remarks> Calling <see cref="M:System.Linq.Enumerable.ToList``1(System.Collections.Generic.IEnumerable{``0})"/> will enumerate the entire stream.</remarks>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IStatementResultCursor.Keys">
+            <summary>
+            Gets the keys in the result.
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IStatementResultCursor.SummaryAsync">
+             <summary>
+             Asynchronously gets the <see cref="T:Neo4j.Driver.V1.IResultSummary"/> after streaming the whole records to the client.
+             If the records in the result are not fully consumed,
+             then calling this method will force to pull all remaining records into buffer to yield the summary.
+            
+             If you want to obtain the summary but discard the records, use <see cref="M:Neo4j.Driver.V1.IStatementResultCursor.ConsumeAsync"/> instead.
+            
+             If all records in the records stream are already consumed, then this method will return the summary directly.
+             </summary>
+             <returns>A task returning the result summary of the running statement.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IStatementResultCursor.PeekAsync">
+            <summary>
+            Asynchronously investigates the next upcoming record without changing the current position in the result.
+            </summary>
+            <returns>A task returning next record or null if there is no next record.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IStatementResultCursor.ConsumeAsync">
+            <summary>
+            Asynchronously consume the entire result, yielding a summary of it.
+            Upon completion of the returned task, the result will be exhausted.
+            </summary>
+            <returns>A task returning the summary for running the statement.</returns>
+            <remarks>This method could be called multiple times. If no more record could be consumed then calling this method has the same effect of calling <see cref="M:Neo4j.Driver.V1.IStatementResultCursor.SummaryAsync"/>.</remarks>
+        </member>
+        <member name="M:Neo4j.Driver.V1.IStatementResultCursor.FetchAsync">
+            <summary>
+            Asynchronously tries to advance to the next record.
+            </summary>
+            <returns>A task returning a <see cref="T:System.Boolean"/>. Task's result is true if there is any result to be consumed, false otherwise.</returns>
+        </member>
+        <member name="P:Neo4j.Driver.V1.IStatementResultCursor.Current">
+            <summary>
+            Returns the current record that has already been read via <see cref="M:Neo4j.Driver.V1.IStatementResultCursor.FetchAsync"/>.
+            </summary>
+            <value>A <see cref="T:Neo4j.Driver.V1.IRecord"/> holding the data sent by the server.</value>
+            <remarks>Throws <exception cref="T:System.InvalidOperationException"></exception>
+            if accessed without calling <see cref="M:Neo4j.Driver.V1.IStatementResultCursor.FetchAsync"/> or <see cref="M:Neo4j.Driver.V1.IStatementResultCursor.PeekAsync"/>.</remarks>
+        </member>
+        <member name="T:Neo4j.Driver.V1.Neo4jException">
+            <summary>
+            The base class for all Neo4j exceptions.
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.V1.Neo4jException.#ctor">
+            <summary>
+            Create a new <see cref="T:Neo4j.Driver.V1.Neo4jException"/>
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.V1.Neo4jException.#ctor(System.String)">
+            <summary>
+            Create a new <see cref="T:Neo4j.Driver.V1.Neo4jException"/> with an error message
+            </summary>
+            <param name="message">The error message.</param>
+        </member>
+        <member name="M:Neo4j.Driver.V1.Neo4jException.#ctor(System.String,System.String)">
+            <summary>
+            Create a new <see cref="T:Neo4j.Driver.V1.Neo4jException"/> with an error code and an error message
+            </summary>
+            <param name="code">The error code.</param>
+            <param name="message">The error message</param>
+        </member>
+        <member name="M:Neo4j.Driver.V1.Neo4jException.#ctor(System.String,System.Exception)">
+            <summary>
+            Create a new <see cref="T:Neo4j.Driver.V1.Neo4jException"/> with an error message and an exception.
+            </summary>
+            <param name="message">The error message.</param>
+            <param name="innerException">The inner exception</param>
+        </member>
+        <member name="M:Neo4j.Driver.V1.Neo4jException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            Create a new <see cref="T:Neo4j.Driver.V1.Neo4jException"/> with an error code, an error message and an excpetion.
+            </summary>
+            <param name="code">The error code.</param>
+            <param name="message">The error message.</param>
+            <param name="innerException">The inner exception.</param>
+        </member>
+        <member name="P:Neo4j.Driver.V1.Neo4jException.Code">
+            <summary>
+            Gets or sets the code of a Neo4j exception.
+            </summary>
+        </member>
+        <member name="T:Neo4j.Driver.V1.ClientException">
+            <summary>
+            A <see cref="T:Neo4j.Driver.V1.ClientException"/> indicates that the client has carried out an operation incorrectly.
+            The error code provided can be used to determine further detail for the problem.
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.V1.ClientException.#ctor">
+            <summary>
+            Create a new <see cref="T:Neo4j.Driver.V1.ClientException"/>.
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.V1.ClientException.#ctor(System.String)">
+            <summary>
+            Create a new <see cref="T:Neo4j.Driver.V1.ClientException"/> with an error message.
+            </summary>
+            <param name="message">The error message.</param>
+        </member>
+        <member name="M:Neo4j.Driver.V1.ClientException.#ctor(System.String,System.String)">
+            <summary>
+            Create a new <see cref="T:Neo4j.Driver.V1.ClientException"/> with an error code and an error message.
+            </summary>
+            <param name="code">The error code.</param>
+            <param name="message">The error message.</param>
+        </member>
+        <member name="M:Neo4j.Driver.V1.ClientException.#ctor(System.String,System.Exception)">
+            <summary>
+            Create a new <see cref="T:Neo4j.Driver.V1.ClientException"/> with an error message and an exception.
+            </summary>
+            <param name="message">The error message.</param>
+            <param name="innerException">The inner exception.</param>
+        </member>
+        <member name="M:Neo4j.Driver.V1.ClientException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            Create a new <see cref="T:Neo4j.Driver.V1.ClientException"/> with an error code, an error message and an exception.
+            </summary>
+            <param name="code">The error code.</param>
+            <param name="message">The error message.</param>
+            <param name="innerException">The inner exception.</param>
+        </member>
+        <member name="T:Neo4j.Driver.V1.TransientException">
+            <summary>
+            A <see cref="T:Neo4j.Driver.V1.TransientException"/> signals a failed operation that may be able to succeed 
+            if this operation is retried without any intervention by application-level functionality. 
+            The error code provided can be used to determine further details for the problem.
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.V1.TransientException.#ctor">
+            <summary>
+            Create a new <see cref="T:Neo4j.Driver.V1.TransientException"/>.
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.V1.TransientException.#ctor(System.String,System.String)">
+            <summary>
+            Create a new <see cref="T:Neo4j.Driver.V1.TransientException"/> with an error code and an error message.
+            </summary>
+            <param name="code">The error code.</param>
+            <param name="message">The error message.</param>
+        </member>
+        <member name="M:Neo4j.Driver.V1.TransientException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            Create a new <see cref="T:Neo4j.Driver.V1.TransientException"/> with an error code, an error message and an exception.
+            </summary>
+            <param name="code">The error code.</param>
+            <param name="message">The error message.</param>
+            <param name="innerException">The inner exception which caused this error.</param>
+        </member>
+        <member name="T:Neo4j.Driver.V1.DatabaseException">
+            <summary>
+            A <see cref="T:Neo4j.Driver.V1.DatabaseException"/> indicates that there is a problem within the underlying database.
+            The error code provided can be used to determine further detail for the problem.
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.V1.DatabaseException.#ctor">
+            <summary>
+            Create a new <see cref="T:Neo4j.Driver.V1.DatabaseException"/>.
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.V1.DatabaseException.#ctor(System.String,System.String)">
+            <summary>
+            Create a new <see cref="T:Neo4j.Driver.V1.DatabaseException"/> with an error code and an error message.
+            </summary>
+            <param name="code">The error code.</param>
+            <param name="message">The error message.</param>
+        </member>
+        <member name="M:Neo4j.Driver.V1.DatabaseException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            Create a new <see cref="T:Neo4j.Driver.V1.DatabaseException"/> with an error code, an error message and an exception.
+            </summary>
+            <param name="code">The error code.</param>
+            <param name="message">The error message.</param>
+            <param name="innerException">The inner exception which caused this error.</param>
+        </member>
+        <member name="T:Neo4j.Driver.V1.ServiceUnavailableException">
+            <summary>
+             A <see cref="T:Neo4j.Driver.V1.ServiceUnavailableException"/> indicates that the driver cannot communicate with the cluster.
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.V1.ServiceUnavailableException.#ctor(System.String)">
+            <summary>
+            Create a new <see cref="T:Neo4j.Driver.V1.ServiceUnavailableException"/> with an error message.
+            </summary>
+            <param name="message">The error message.</param>
+        </member>
+        <member name="M:Neo4j.Driver.V1.ServiceUnavailableException.#ctor(System.String,System.Exception)">
+            <summary>
+            Create a new <see cref="T:Neo4j.Driver.V1.ServiceUnavailableException"/> with an error message and an exception.
+            </summary>
+            <param name="message">The error message.</param>
+            <param name="innerException">The inner exception.</param>
+        </member>
+        <member name="T:Neo4j.Driver.V1.SessionExpiredException">
+             <summary>
+             A <see cref="T:Neo4j.Driver.V1.SessionExpiredException"/> indicates that the session can no longer satisfy the criteria under which it was acquired,
+             e.g. a server no longer accepts write requests.
+            
+             A new session needs to be acquired from the driver and all actions taken on the expired session must be replayed.
+             </summary>
+        </member>
+        <member name="M:Neo4j.Driver.V1.SessionExpiredException.#ctor(System.String)">
+            <summary>
+            Create a new <see cref="T:Neo4j.Driver.V1.SessionExpiredException"/> with an error message.
+            </summary>
+            <param name="message">The error message.</param>
+        </member>
+        <member name="M:Neo4j.Driver.V1.SessionExpiredException.#ctor(System.String,System.Exception)">
+            <summary>
+            Create a new <see cref="T:Neo4j.Driver.V1.SessionExpiredException"/> with an error message and an exception.
+            </summary>
+            <param name="message">The error message.</param>
+            <param name="innerException">The inner exception.</param>
+        </member>
+        <member name="T:Neo4j.Driver.V1.ProtocolException">
+            <summary>
+            There was a bolt protocol violation of the contract between the driver and the server. 
+            When seen this error, contact driver developers.
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.V1.ProtocolException.#ctor(System.String)">
+            <summary>
+            Create a new <see cref="T:Neo4j.Driver.V1.ProtocolException"/> with an error message.
+            </summary>
+            <param name="message">The error message.</param>
+        </member>
+        <member name="M:Neo4j.Driver.V1.ProtocolException.#ctor(System.String,System.String)">
+            <summary>
+            Create a new <see cref="T:Neo4j.Driver.V1.ProtocolException"/> with an error code and an error message.
+            </summary>
+            <param name="code">The error code.</param>
+            <param name="message">The error message.</param>
+        </member>
+        <member name="M:Neo4j.Driver.V1.ProtocolException.#ctor(System.String,System.Exception)">
+            <summary>
+            Create a new <see cref="T:Neo4j.Driver.V1.SessionExpiredException"/> with an error message and an exception.
+            </summary>
+            <param name="message">The error message.</param>
+            <param name="innerException">The inner exception.</param>
+        </member>
+        <member name="T:Neo4j.Driver.V1.SecurityException">
+            <summary>
+            Failed to connect the driver to the server due to security errors
+            When this type of error happens, recreation of the driver might be required.
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.V1.SecurityException.#ctor(System.String)">
+            <summary>
+            Create a new <see cref="T:Neo4j.Driver.V1.SecurityException"/> with an error message.
+            </summary>
+            <param name="message">The error message.</param>
+        </member>
+        <member name="M:Neo4j.Driver.V1.SecurityException.#ctor(System.String,System.String)">
+            <summary>
+            Create a new <see cref="T:Neo4j.Driver.V1.SecurityException"/> with an error code and an error message.
+            </summary>
+            <param name="code">The error code.</param>
+            <param name="message">The error message.</param>
+        </member>
+        <member name="M:Neo4j.Driver.V1.SecurityException.#ctor(System.String,System.Exception)">
+            <summary>
+            Create a new <see cref="T:Neo4j.Driver.V1.SecurityException"/> with an error message and an exception.
+            </summary>
+            <param name="message">The error message.</param>
+            <param name="innerException">The inner exception.</param>
+        </member>
+        <member name="T:Neo4j.Driver.V1.AuthenticationException">
+            <summary>
+            Failed to authentication the client to the server due to bad credentials
+            To recover from this error, close the current driver and restart with the correct credentials 
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.V1.AuthenticationException.#ctor(System.String)">
+            <summary>
+            Create a new <see cref="T:Neo4j.Driver.V1.AuthenticationException"/> with an error message.
+            </summary>
+            <param name="message">The error message.</param>
+        </member>
+        <member name="T:Neo4j.Driver.V1.Statement">
+            <summary>
+            An executable statement, i.e. the statements' text and its parameters.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.Statement.Text">
+            <summary>
+            Gets the statement's text.
+            </summary>
+        </member>
+        <member name="P:Neo4j.Driver.V1.Statement.Parameters">
+            <summary>
+            Gets the statement's parameters.
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.V1.Statement.#ctor(System.String)">
+            <summary>
+            Create a statemete with no statement parameters.
+            </summary>
+            <param name="text">The statement's text</param>
+        </member>
+        <member name="M:Neo4j.Driver.V1.Statement.#ctor(System.String,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Create a statemete
+            </summary>
+            <param name="text">The statement's text</param>
+            <param name="parameters">The statement's parameters, whoes values should not be changed while the statement is used in a session/transaction.</param>
+        </member>
+        <member name="M:Neo4j.Driver.V1.Statement.ToString">
+            <summary>
+            Print the statement.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Neo4j.Driver.V1.StatementResultCursorExtensions">
+            <summary>
+            Extension methods for <see cref="T:Neo4j.Driver.V1.IStatementResultCursor"/>
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.V1.StatementResultCursorExtensions.SingleAsync(Neo4j.Driver.V1.IStatementResultCursor)">
+            <summary>
+            Return the only record in the result stream.
+            </summary>
+            <param name="result">The result stream</param>
+            <returns>The only record in the result stream.</returns>
+            <remarks>Throws <exception cref="T:System.InvalidOperationException"></exception>
+            if the result contains more than one record or the result is empty.</remarks>
+        </member>
+        <member name="M:Neo4j.Driver.V1.StatementResultCursorExtensions.ToListAsync(Neo4j.Driver.V1.IStatementResultCursor)">
+            <summary>
+            Pull all records in the result stream into memory and return in a list.
+            </summary>
+            <param name="result"> The result stream.</param>
+            <returns>A list with all records in the result stream.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.StatementResultCursorExtensions.ToListAsync``1(Neo4j.Driver.V1.IStatementResultCursor,System.Func{Neo4j.Driver.V1.IRecord,``0})">
+            <summary>
+            Apply the operation on each record in the result stream and return the operation results in a list.
+            </summary>
+            <typeparam name="T">The return type of the list</typeparam>
+            <param name="result">The result stream.</param>
+            <param name="operation">The operation to carry out on each record.</param>
+            <returns>A list of collected operation result.</returns>
+        </member>
+        <member name="M:Neo4j.Driver.V1.StatementResultCursorExtensions.ForEachAsync(Neo4j.Driver.V1.IStatementResultCursor,System.Action{Neo4j.Driver.V1.IRecord})">
+            <summary>
+            Read each record in the result stream and aplly the operation on each record.
+            </summary>
+            <param name="result">The result stream.</param>
+            <param name="operation">The operation is carried out on each record.</param>
+            <returns>The result summary after all records have been processed.</returns>
+        </member>
+        <member name="T:Neo4j.Driver.V1.ValueExtensions">
+            <summary>
+            A collection of extensions to process values streamed back via Bolt.
+            </summary>
+        </member>
+        <member name="M:Neo4j.Driver.V1.ValueExtensions.As``1(System.Object)">
+            <summary>
+            A helper method to explicitly cast the value streamed back via Bolt to a local type.
+            </summary>
+            <typeparam name="T">
+            Supports for the following types (or nullable version of the following types if applies):
+            <see cref="T:System.Int16"/>,
+            <see cref="T:System.Int32"/>,
+            <see cref="T:System.Int64"/>,
+            <see cref="T:System.Single"/>,
+            <see cref="T:System.Double"/>,
+            <see cref="T:System.SByte"/>,
+            <see cref="T:System.UInt16"/>,
+            <see cref="T:System.UInt32"/>,
+            <see cref="T:System.UInt64"/>,
+            <see cref="T:System.Byte"/>,
+            <see cref="T:System.Char"/>,
+            <see cref="T:System.Boolean"/>,
+            <see cref="T:System.String"/>, 
+            <see cref="T:System.Collections.Generic.List`1"/>,
+            <see cref="T:Neo4j.Driver.V1.INode"/>,
+            <see cref="T:Neo4j.Driver.V1.IRelationship"/>,
+            <see cref="T:Neo4j.Driver.V1.IPath"/>.
+            Undefined support for other types that are not listed above.
+            No support for user-defined types, e.g. Person, Movie.
+            </typeparam>
+            <param name="value">The value that streamed back via Bolt protocol, e.g.<see cref="P:Neo4j.Driver.V1.IEntity.Properties"/>.</param>
+            <returns>The value of specified return type.</returns>
+            <remarks>Throws <see cref="T:System.InvalidCastException"/> if the specified cast is not possible.</remarks>
+        </member>
+    </members>
+</doc>
