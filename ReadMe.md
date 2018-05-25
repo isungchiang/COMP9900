@@ -22,7 +22,7 @@ Flask 0.12.2
 Required Libraries:
 json, urllib, config, render_template, request, url_for, redirect, session
 
-## Notice：We use free account of Microsoft Auzre, the service will be stoped after 2018/06/01. If you run this porject after that date, please contact any of us to renew the account.
+## Notice：We use free account of Microsoft Auzre, the service will be stoped after 2018/06/01. If you run this project after that date, please contact any of us to renew the account.
 
 ## Setup
 
