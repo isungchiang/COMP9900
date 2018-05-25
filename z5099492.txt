@@ -19,13 +19,16 @@ Week7
 This week I imporved the chart change mode of three basic chart and the part of interfaces of our websites.
 
 Week8
-change the mode of the basic graph, set a new table css for all our tables.
+change the mode of the basic graph, set some new css for all our page.
 
 Week9
-Change our websites switch mode, set a switch bar, imporve the interface. Imporve the full graph.
+Change our websites switch mode, set a switch bar, imporve the interface. Set new function to full-graph page.
 
 Week10
-set different echarts for our portfolio webs.
+Set new function and echarts for profile summary and assets pages.
 
 Week11
 Fix bugs, prepare for presentation.
+
+Week12 
+Write report
