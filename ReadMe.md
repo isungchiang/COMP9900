@@ -96,3 +96,5 @@ Open the project sln file by visual studio(VS is the best ide to publish somethi
 The main content of api is 3 cs file in Controllers
 
 Right click the project solution, choose publish. Use you Azure account to set up it. Follow the instruction from VS, it should be very easy.
+
+If you want to replace our api with yours, please modified the url in the main flask project.
