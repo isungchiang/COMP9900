@@ -75,12 +75,16 @@ Required Libraries: splinter
 
 ### Build and import data to a Neo4j database:
 Required: python3, neo4j-v1,  Microsoft Azure Account
+
 File: neo4j/import.py
-After crawling data from different web site, save them in a csv file(with \t as separation mark
-). Upload all csv files to a remote storage. Since we deployed it in Azure, an account is required. Create a Neo4j cluster at Azure Portal, then get the remote address of database.
+
+After crawling data from different web site, save them in a csv file(with \t as separation mark). Upload all csv files to a remote storage. Since we deployed it in Azure, an account is required. Create a Neo4j cluster at Azure Portal, then get the remote address of database.
 Usage:
+
 Set the data urls, database address, passwords in the front of import.py
+
 Run python3 import.py (Please do not run with our url, or the current database will be modified)
 ### Publish Web Api:
 Required: Windows 10, Visual Studio 2015 or higher, .Net Frame module, Azure module, neo4j module
+
 File: 
